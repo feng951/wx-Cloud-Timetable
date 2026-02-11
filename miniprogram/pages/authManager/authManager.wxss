@@ -1,0 +1,241 @@
+/* 认证管理页面样式 */
+.container {
+  background-color: #f5f5f5;
+  min-height: 100vh;
+  padding-bottom: 20px;
+}
+
+/* 导航栏 */
+.navbar {
+  background-color: #ffffff;
+  padding: 15px;
+  border-bottom: 1px solid #e0e0e0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333333;
+}
+
+/* 区块样式 */
+.section {
+  background-color: #ffffff;
+  margin: 10px;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 15px;
+  display: block;
+}
+
+/* 表单样式 */
+.auth-form,
+.feedback-form {
+  margin-bottom: 15px;
+}
+
+.form-item {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  font-size: 14px;
+  color: #666666;
+  margin-bottom: 5px;
+}
+
+.input {
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  padding: 10px;
+  font-size: 14px;
+  color: #333333;
+}
+
+.textarea {
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  padding: 10px;
+  font-size: 14px;
+  color: #333333;
+  min-height: 100px;
+  resize: none;
+}
+
+.submit-btn {
+  background-color: #1890ff;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  padding: 12px;
+  font-size: 14px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.auth-btn {
+  background-color: #52c41a;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  padding: 12px;
+  font-size: 14px;
+  width: 100%;
+  margin-top: 15px;
+}
+
+/* 信息文本 */
+.info-text {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.info-text text {
+  display: block;
+  font-size: 12px;
+  color: #666666;
+  margin-bottom: 5px;
+  line-height: 1.4;
+}
+
+.auth-info {
+  margin-bottom: 15px;
+}
+
+.info-item {
+  display: block;
+  font-size: 14px;
+  color: #666666;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+/* 班级列表 */
+.class-list {
+  margin-top: 10px;
+}
+
+.class-item {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+  background-color: #f9f9f9;
+}
+
+.class-name {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.class-meta {
+  font-size: 12px;
+  color: #1890ff;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.class-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.action-btn {
+  flex: 1;
+  background-color: #f0f0f0;
+  color: #333333;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  padding: 8px;
+  font-size: 12px;
+}
+
+/* 选择器样式 */
+.picker {
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  padding: 10px;
+  font-size: 14px;
+  color: #333333;
+  background-color: #ffffff;
+}
+
+.picker-text {
+  color: #333333;
+}
+
+/* 加载提示 */
+.loading {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #ffffff;
+  padding: 15px 25px;
+  border-radius: 4px;
+  font-size: 14px;
+  z-index: 999;
+}
+
+/* 响应式调整 */
+@media (max-width: 375px) {
+  .section {
+    padding: 15px;
+  }
+  
+  .class-actions {
+    flex-direction: column;
+  }
+  
+  .action-btn {
+    width: 100%;
+  }
+  
+  .input,
+  .textarea,
+  .picker {
+    padding: 8px;
+  }
+  
+  .submit-btn,
+  .auth-btn {
+    padding: 10px;
+  }
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}

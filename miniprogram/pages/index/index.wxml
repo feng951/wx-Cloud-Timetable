@@ -1,0 +1,109 @@
+<!--index.wxml-->
+<view class="container">
+  <!-- 未登录状态 -->
+  <view wx:if="{{!isLoggedIn}}" class="login-section">
+    <view class="login-icon">📚</view>
+    <text class="login-title">欢迎使用风表</text>
+    <text class="login-subtitle">登录后可查看和管理您的课表</text>
+    <button class="login-btn" bindtap="login" loading="{{isLoading}}">微信登录</button>
+  </view>
+
+  <!-- 已登录状态 -->
+  <view wx:if="{{isLoggedIn}}" class="main-content">
+    <!-- 顶部安全区域 -->
+    <view class="safe-area-top"></view>
+
+    <!-- 顶部日期栏 -->
+    <view class="date-header">
+      <view class="date-info">
+        <text class="timetable-name">{{mainTimetableName || '我的课表'}}</text>
+        <view class="date-row">
+          <text class="date-full">{{currentDate}}</text>
+          <text class="week-info">第 {{currentWeek}} 周</text>
+        </view>
+      </view>
+      <view class="header-actions">
+        <view class="action-btn" bindtap="addCourse">+</view>
+        <view class="action-btn" bindtap="manageTimetables">⚙</view>
+      </view>
+    </view>
+
+    <!-- 周数指示器 -->
+    <view class="week-indicator">
+      <view class="week-nav" bindtap="prevWeek">‹</view>
+      <view class="week-center">
+        <text class="current-week-text">第 {{displayWeek}} 周</text>
+        <view wx:if="{{displayWeek !== currentWeek}}" class="back-to-current" bindtap="backToCurrentWeek">
+          <text class="back-text">回到本周</text>
+        </view>
+      </view>
+      <view class="week-nav" bindtap="nextWeek">›</view>
+    </view>
+
+    <!-- 星期栏 - 可滑动 -->
+    <swiper class="week-swiper" current="{{displayWeek - 1}}" bindchange="onWeekChange" duration="300">
+      <swiper-item wx:for="{{weekData}}" wx:key="week" wx:for-item="weekItem">
+        <view class="week-header">
+          <view class="week-label-cell">
+            <text class="week-label">第{{weekItem.week}}周</text>
+          </view>
+          <view wx:for="{{weekItem.days}}" wx:key="index" class="day-cell {{weekItem.week === currentWeek && currentDay === index ? 'active' : ''}} {{index === 0 ? 'is-monday' : ''}}">
+            <text class="day-name">{{weekDays[index]}}</text>
+            <text class="day-date">{{item.date}}</text>
+            <text class="day-month" wx:if="{{item.showMonth}}">{{item.month}}月</text>
+          </view>
+        </view>
+      </swiper-item>
+    </swiper>
+
+    <!-- 课表主体 -->
+    <swiper class="timetable-swiper" current="{{displayWeek - 1}}" bindchange="onWeekChange" duration="300">
+      <swiper-item wx:for="{{weekData}}" wx:key="week" wx:for-item="weekItem">
+        <scroll-view class="timetable-scroll" scroll-y enhanced show-scrollbar="{{false}}">
+          <view class="timetable-body">
+            <view wx:for="{{timeSlots}}" wx:key="index" class="time-row">
+              <!-- 时间列 -->
+              <view class="time-cell">
+                <text class="period-num">{{index + 1}}</text>
+                <view class="time-range">
+                  <text class="start-time">{{item.start}}</text>
+                  <text class="end-time">{{item.end}}</text>
+                </view>
+              </view>
+              
+              <!-- 课程格子 -->
+              <view wx:for="{{weekDays}}" wx:for-index="dayIndex" wx:key="dayIndex" 
+                    class="course-slot {{weekItem.week === currentWeek && currentDay === dayIndex ? 'today' : ''}}"
+                    bindtap="onSlotTap" data-day="{{dayIndex}}" data-time="{{index}}" data-week="{{weekItem.week}}">
+                <view wx:if="{{weekItem.courses[dayIndex][index]}}" 
+                      class="course-card" 
+                      style="background-color: {{weekItem.courses[dayIndex][index].color}}">
+                  <text class="course-name">{{weekItem.courses[dayIndex][index].name}}</text>
+                  <text class="course-room">{{weekItem.courses[dayIndex][index].room}}</text>
+                </view>
+              </view>
+            </view>
+          </view>
+        </scroll-view>
+      </swiper-item>
+    </swiper>
+
+    <!-- 周指示点 -->
+    <view class="week-dots">
+      <view wx:for="{{weekData}}" wx:key="week" 
+            class="dot {{displayWeek === item.week ? 'active' : ''}}"
+            bindtap="goToWeek" data-week="{{item.week}}"></view>
+    </view>
+
+    <!-- 空状态提示 -->
+    <view wx:if="{{isEmpty}}" class="empty-state">
+      <text class="empty-icon">📖</text>
+      <text class="empty-text">暂无课程</text>
+      <text class="empty-subtext">点击"+"添加课程或使用分享码导入</text>
+      <view class="empty-actions">
+        <button class="import-btn primary" bindtap="showImportDialog">导入课表</button>
+        <button class="import-btn" bindtap="addCourse">添加课程</button>
+      </view>
+    </view>
+  </view>
+</view>

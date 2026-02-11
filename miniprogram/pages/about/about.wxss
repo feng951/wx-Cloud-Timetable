@@ -1,0 +1,304 @@
+/**about.wxss - 关于我们页面 - 简洁自然设计**/
+
+/* 页面基础样式 */
+.about-container {
+  min-height: 100vh;
+  background-color: #F5F5F5;
+  padding-bottom: 40rpx;
+}
+
+/* 顶部装饰区域 */
+.header-section {
+  position: relative;
+  padding: 60rpx 40rpx 80rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #FFFFFF;
+  border-bottom: 1rpx solid #E5E5E5;
+}
+
+.app-icon-wrapper {
+  margin-bottom: 20rpx;
+}
+
+.app-icon {
+  width: 120rpx;
+  height: 120rpx;
+  background-color: #333333;
+  border-radius: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-text {
+  font-size: 60rpx;
+}
+
+.app-name {
+  font-size: 40rpx;
+  font-weight: 600;
+  color: #1A1A1A;
+  margin-bottom: 8rpx;
+}
+
+.app-slogan {
+  font-size: 26rpx;
+  color: #666666;
+}
+
+/* 卡片通用样式 */
+.developer-card,
+.contact-card,
+.repo-card {
+  margin: 24rpx;
+  background-color: #FFFFFF;
+  border-radius: 12rpx;
+  padding: 24rpx;
+}
+
+/* 卡片头部 */
+.card-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.header-line {
+  width: 4rpx;
+  height: 28rpx;
+  background-color: #333333;
+  border-radius: 2rpx;
+  margin-right: 12rpx;
+}
+
+.card-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #1A1A1A;
+}
+
+/* 开发者信息 */
+.developer-info {
+  display: flex;
+  align-items: center;
+  padding: 12rpx 0;
+}
+
+.avatar-wrapper {
+  position: relative;
+  margin-right: 20rpx;
+}
+
+.developer-avatar {
+  width: 80rpx;
+  height: 80rpx;
+  background-color: #333333;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-text {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+.status-dot {
+  position: absolute;
+  bottom: 4rpx;
+  right: 4rpx;
+  width: 20rpx;
+  height: 20rpx;
+  background-color: #52C41A;
+  border-radius: 50%;
+  border: 3rpx solid #FFFFFF;
+}
+
+.developer-details {
+  flex: 1;
+}
+
+.developer-name {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #1A1A1A;
+  margin-bottom: 4rpx;
+  display: block;
+}
+
+.developer-role {
+  font-size: 26rpx;
+  color: #666666;
+  display: block;
+}
+
+/* 联系方式列表 */
+.contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  padding: 20rpx;
+  background-color: #FAFAFA;
+  border-radius: 8rpx;
+}
+
+.contact-item:active {
+  background-color: #F0F0F0;
+}
+
+.contact-icon {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 12rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 16rpx;
+  flex-shrink: 0;
+}
+
+.qq-icon {
+  background-color: #F0F7FF;
+}
+
+.email-icon {
+  background-color: #FFF2F0;
+}
+
+.iconfont {
+  font-size: 36rpx;
+}
+
+.contact-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.contact-label {
+  font-size: 24rpx;
+  color: #999999;
+  margin-bottom: 4rpx;
+  display: block;
+}
+
+.contact-value {
+  font-size: 28rpx;
+  color: #1A1A1A;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.copy-btn {
+  padding: 10rpx 20rpx;
+  background-color: #333333;
+  border-radius: 6rpx;
+  margin-left: 12rpx;
+  flex-shrink: 0;
+}
+
+.copy-text {
+  font-size: 24rpx;
+  color: #FFFFFF;
+}
+
+/* 代码仓库列表 */
+.repo-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+
+.repo-item {
+  display: flex;
+  align-items: center;
+  padding: 24rpx;
+  background-color: #FAFAFA;
+  border-radius: 8rpx;
+}
+
+.repo-item:active {
+  background-color: #F0F0F0;
+}
+
+.repo-icon {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 12rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 16rpx;
+  flex-shrink: 0;
+}
+
+.github-icon {
+  background-color: #F5F0FF;
+}
+
+.gitee-icon {
+  background-color: #FFF7E6;
+}
+
+.repo-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.repo-name {
+  font-size: 30rpx;
+  color: #1A1A1A;
+  font-weight: 600;
+  margin-bottom: 4rpx;
+  display: block;
+}
+
+.repo-desc {
+  font-size: 24rpx;
+  color: #666666;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.arrow-icon {
+  margin-left: 12rpx;
+  flex-shrink: 0;
+}
+
+.arrow {
+  font-size: 36rpx;
+  color: #999999;
+}
+
+/* 版本信息 */
+.version-section {
+  margin-top: 40rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 40rpx;
+}
+
+.version-text {
+  font-size: 24rpx;
+  color: #999999;
+  margin-bottom: 8rpx;
+}
+
+.copyright {
+  font-size: 22rpx;
+  color: #BBBBBB;
+  text-align: center;
+}

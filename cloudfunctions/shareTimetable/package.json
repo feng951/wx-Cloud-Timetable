@@ -1,0 +1,9 @@
+{
+  "name": "shareTimetable",
+  "version": "1.0.0",
+  "description": "课表分享功能",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "latest"
+  }
+}

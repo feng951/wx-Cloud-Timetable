@@ -1,0 +1,93 @@
+<!-- 课表广场页面 -->
+<view class="container">
+  <!-- 导航栏 -->
+  <view class="navbar">
+    <text class="nav-title">课表广场</text>
+  </view>
+  
+  <!-- 搜索栏 -->
+  <view class="search-bar">
+    <input 
+      class="search-input" 
+      placeholder="搜索课表名称或关键词" 
+      value="{{searchKeyword}}"
+      bindinput="handleSearchInput"
+    />
+    <button class="search-btn" bindtap="searchTimetables">搜索</button>
+  </view>
+  
+  <!-- 导入课表 -->
+  <view class="import-section">
+    <text class="section-title">导入课表</text>
+    <view class="import-form">
+      <input 
+        class="import-input" 
+        placeholder="请输入课表ID" 
+        value="{{importId}}"
+        bindinput="handleImportIdInput"
+      />
+      <button class="import-btn" bindtap="importTimetable">导入</button>
+    </view>
+  </view>
+  
+  <!-- 课表列表 -->
+  <view class="timetable-section">
+    <text class="section-title">热门课表</text>
+    <view class="timetable-list">
+      <view 
+        wx:for="{{timetables}}" 
+        wx:key="index" 
+        class="timetable-item"
+        bindtap="showTimetableDetail" 
+        data-timetable="{{item}}"
+      >
+        <view class="timetable-info">
+          <text class="timetable-name">{{item.name}}</text>
+          <text class="timetable-meta">
+            <text class="meta-item">导入 {{item.shareCount}} 次</text>
+            <text class="meta-item">•</text>
+            <text class="meta-item">{{item.ratingCount}} 人评价</text>
+            <text class="meta-item">•</text>
+            <text class="meta-item">{{item.averageRating}} 星</text>
+          </text>
+          <text class="timetable-creator">创建者: {{item.creatorName || '未知'}}</text>
+          <text class="timetable-courses">课程数量: {{item.courses.length}} 门</text>
+        </view>
+        <view class="timetable-actions">
+          <button 
+            class="action-btn import-action"
+            bindtap="importTimetableById" 
+            data-id="{{item._id}}"
+            catchtap="preventTap"
+          >
+            导入
+          </button>
+          <button 
+            class="action-btn share-action"
+            bindtap="shareTimetable" 
+            data-id="{{item._id}}"
+            catchtap="preventTap"
+          >
+            分享
+          </button>
+        </view>
+        <view wx:if="{{item.isOfficial}}" class="official-badge">官方认证</view>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 加载更多 -->
+  <view class="load-more" wx:if="{{hasMore}}">
+    <button class="load-more-btn" bindtap="loadMore">加载更多</button>
+  </view>
+  
+  <!-- 空状态 -->
+  <view class="empty-state" wx:if="{{!loading && timetables.length === 0}}">
+    <text class="empty-text">暂无课表资源</text>
+  </view>
+  
+  <!-- 加载提示 -->
+  <view class="loading" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+</view>

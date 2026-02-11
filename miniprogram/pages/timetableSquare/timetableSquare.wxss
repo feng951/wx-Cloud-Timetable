@@ -1,0 +1,280 @@
+/* 课表广场页面样式 */
+.container {
+  background-color: #f5f5f5;
+  min-height: 100vh;
+  padding-bottom: 20px;
+}
+
+/* 导航栏 */
+.navbar {
+  background-color: #ffffff;
+  padding: 15px;
+  border-bottom: 1px solid #e0e0e0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333333;
+}
+
+/* 搜索栏 */
+.search-bar {
+  display: flex;
+  background-color: #ffffff;
+  margin: 10px;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.search-input {
+  flex: 1;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  padding: 10px;
+  font-size: 14px;
+  color: #333333;
+  margin-right: 10px;
+}
+
+.search-btn {
+  background-color: #1890ff;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  padding: 0 20px;
+  font-size: 14px;
+}
+
+/* 导入课表部分 */
+.import-section {
+  background-color: #ffffff;
+  margin: 0 10px 10px;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 15px;
+  display: block;
+}
+
+.import-form {
+  display: flex;
+}
+
+.import-input {
+  flex: 1;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  padding: 10px;
+  font-size: 14px;
+  color: #333333;
+  margin-right: 10px;
+}
+
+.import-btn {
+  background-color: #52c41a;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  padding: 0 20px;
+  font-size: 14px;
+}
+
+/* 课表列表部分 */
+.timetable-section {
+  background-color: #ffffff;
+  margin: 0 10px;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.timetable-list {
+  margin-top: 10px;
+}
+
+.timetable-item {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+  background-color: #f9f9f9;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.timetable-info {
+  flex: 1;
+  margin-right: 15px;
+}
+
+.timetable-name {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.timetable-meta {
+  font-size: 12px;
+  color: #666666;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.meta-item {
+  margin-right: 8px;
+}
+
+.timetable-creator {
+  font-size: 12px;
+  color: #666666;
+  margin-bottom: 4px;
+  display: block;
+}
+
+.timetable-courses {
+  font-size: 12px;
+  color: #666666;
+  display: block;
+}
+
+.timetable-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.action-btn {
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-size: 12px;
+  width: 80px;
+  text-align: center;
+}
+
+.import-action {
+  background-color: #52c41a;
+  color: #ffffff;
+  border-color: #52c41a;
+}
+
+.share-action {
+  background-color: #1890ff;
+  color: #ffffff;
+  border-color: #1890ff;
+}
+
+.official-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #faad14;
+  color: #ffffff;
+  font-size: 10px;
+  padding: 4px 8px;
+  border-radius: 10px;
+}
+
+/* 加载更多 */
+.load-more {
+  margin: 15px 10px;
+  text-align: center;
+}
+
+.load-more-btn {
+  background-color: #f0f0f0;
+  color: #333333;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 14px;
+}
+
+/* 空状态 */
+.empty-state {
+  background-color: #ffffff;
+  margin: 0 10px;
+  border-radius: 8px;
+  padding: 60px 20px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.empty-text {
+  font-size: 16px;
+  color: #999999;
+}
+
+/* 加载提示 */
+.loading {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #ffffff;
+  padding: 15px 25px;
+  border-radius: 4px;
+  font-size: 14px;
+  z-index: 999;
+}
+
+/* 响应式调整 */
+@media (max-width: 375px) {
+  .timetable-item {
+    flex-direction: column;
+  }
+  
+  .timetable-info {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+  
+  .timetable-actions {
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 100%;
+  }
+  
+  .action-btn {
+    width: 70px;
+    padding: 6px 12px;
+  }
+  
+  .search-bar,
+  .import-form {
+    flex-direction: column;
+  }
+  
+  .search-input,
+  .import-input {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+  
+  .search-btn,
+  .import-btn {
+    width: 100%;
+    padding: 10px;
+  }
+}
+
+/* 防止冒泡 */
+.preventTap {
+  /* 空样式，用于阻止事件冒泡 */
+}

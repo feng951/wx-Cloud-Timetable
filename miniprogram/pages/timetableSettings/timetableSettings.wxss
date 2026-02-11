@@ -1,0 +1,205 @@
+/**timetableSettings.wxss**/
+
+page {
+  background-color: #F5F7FA;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', PingFang SC, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 设置滚动区 */
+.settings-scroll {
+  flex: 1;
+}
+
+.settings-content {
+  padding: 30rpx;
+}
+
+/* 设置分组 */
+.settings-group {
+  background-color: #FFFFFF;
+  border-radius: 16rpx;
+  margin-bottom: 30rpx;
+  overflow: hidden;
+}
+
+.group-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #1A1A1A;
+  padding: 30rpx 30rpx 20rpx;
+  border-bottom: 1rpx solid #F5F7FA;
+  display: flex;
+  flex-direction: column;
+}
+
+.group-desc {
+  font-size: 24rpx;
+  color: #999999;
+  font-weight: normal;
+  margin-top: 8rpx;
+}
+
+/* 设置项 */
+.settings-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30rpx;
+  border-bottom: 1rpx solid #F5F7FA;
+}
+
+.settings-item:last-child {
+  border-bottom: none;
+}
+
+.settings-item.switch-item {
+  padding: 24rpx 30rpx;
+}
+
+.item-label {
+  font-size: 30rpx;
+  color: #1A1A1A;
+}
+
+.item-value {
+  font-size: 28rpx;
+  color: #667eea;
+}
+
+.item-input {
+  flex: 1;
+  text-align: right;
+  font-size: 30rpx;
+  color: #1A1A1A;
+}
+
+.item-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-right: 20rpx;
+}
+
+.item-desc {
+  font-size: 24rpx;
+  color: #999999;
+  margin-top: 8rpx;
+  line-height: 1.4;
+}
+
+.item-desc.warning {
+  color: #FF6B6B;
+}
+
+/* 课程时间列表 */
+.period-list {
+  padding: 10rpx 0;
+}
+
+.period-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24rpx 30rpx;
+  border-bottom: 1rpx solid #F5F7FA;
+}
+
+.period-item:last-child {
+  border-bottom: none;
+}
+
+/* 第八节课后的分隔横栏 */
+.period-item.evening-divider {
+  border-top: 4rpx solid #667eea;
+  margin-top: 20rpx;
+  padding-top: 30rpx;
+  position: relative;
+}
+
+.period-item.evening-divider::before {
+  content: '晚自习时间';
+  position: absolute;
+  top: -16rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #667eea;
+  color: #FFFFFF;
+  font-size: 22rpx;
+  padding: 6rpx 20rpx;
+  border-radius: 20rpx;
+}
+
+.period-info {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.period-num {
+  font-size: 30rpx;
+  color: #1A1A1A;
+  font-weight: 500;
+}
+
+.period-tag {
+  font-size: 22rpx;
+  padding: 4rpx 12rpx;
+  border-radius: 8rpx;
+}
+
+.period-tag.daytime {
+  background-color: #EEF2FF;
+  color: #667eea;
+}
+
+.period-tag.evening {
+  background-color: #F3E8FF;
+  color: #764ba2;
+}
+
+.period-time {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.time-value {
+  font-size: 30rpx;
+  color: #667eea;
+  background-color: #F5F7FA;
+  padding: 12rpx 24rpx;
+  border-radius: 8rpx;
+  min-width: 100rpx;
+  text-align: center;
+}
+
+.time-separator {
+  font-size: 28rpx;
+  color: #999999;
+}
+
+/* 恢复默认时间按钮 */
+.reset-time-btn {
+  margin: 20rpx 30rpx 30rpx;
+  padding: 24rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #667eea;
+  background-color: #F5F7FA;
+  border-radius: 12rpx;
+}
+
+.reset-time-btn:active {
+  background-color: #E8ECF4;
+}
+
+/* 底部占位 */
+.bottom-space {
+  height: 60rpx;
+}

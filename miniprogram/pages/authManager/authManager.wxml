@@ -1,0 +1,101 @@
+<!-- 认证管理页面 -->
+<view class="container">
+  <!-- 导航栏 -->
+  <view class="navbar">
+    <text class="nav-title">认证管理</text>
+  </view>
+  
+  <!-- 班级绑定 -->
+  <view class="section">
+    <text class="section-title">班级绑定</text>
+    <view class="auth-form">
+      <view class="form-item">
+        <text class="label">班级名称</text>
+        <input 
+          class="input" 
+          placeholder="请输入班级名称" 
+          value="{{className}}"
+          bindinput="handleClassNameInput"
+        />
+      </view>
+      <view class="form-item">
+        <text class="label">申请理由</text>
+        <textarea 
+          class="textarea" 
+          placeholder="请说明申请成为班级管理员的理由" 
+          value="{{applyReason}}"
+          bindinput="handleApplyReasonInput"
+        />
+      </view>
+      <button class="submit-btn" bindtap="applyClassManager">申请班级管理员</button>
+    </view>
+    <view class="info-text">
+      <text>• 班级管理员可以发布和管理班级标准版课表</text>
+      <text>• 标准版课表会带有特殊的官方标识</text>
+      <text>• 班级成员可以收到标准版课表的更新通知</text>
+    </view>
+  </view>
+  
+  <!-- 我的班级 -->
+  <view class="section" wx:if="{{managedClasses.length > 0}}">
+    <text class="section-title">我的班级</text>
+    <view class="class-list">
+      <view wx:for="{{managedClasses}}" wx:key="index" class="class-item">
+        <text class="class-name">{{item.className}}</text>
+        <text class="class-meta">管理员</text>
+        <view class="class-actions">
+          <button class="action-btn" bindtap="manageClassTimetable" data-classid="{{item._id}}">管理课表</button>
+          <button class="action-btn" bindtap="viewClassMembers" data-classid="{{item._id}}">查看成员</button>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 官方认证 -->
+  <view class="section">
+    <text class="section-title">官方认证</text>
+    <view class="auth-info">
+      <text class="info-item">• 官方认证课表会在课表广场中展示特殊标识</text>
+      <text class="info-item">• 认证课表需要经过审核才能获得认证标识</text>
+      <text class="info-item">• 认证课表的质量和可信度更高</text>
+    </view>
+    <button class="auth-btn" bindtap="applyOfficialAuth">申请官方认证</button>
+  </view>
+  
+  <!-- 错误反馈 -->
+  <view class="section">
+    <text class="section-title">错误反馈</text>
+    <view class="feedback-form">
+      <view class="form-item">
+        <text class="label">课表ID</text>
+        <input 
+          class="input" 
+          placeholder="请输入需要反馈的课表ID" 
+          value="{{feedbackTimetableId}}"
+          bindinput="handleFeedbackTimetableIdInput"
+        />
+      </view>
+      <view class="form-item">
+        <text class="label">错误类型</text>
+        <picker class="picker" range="{{errorTypes}}" bindchange="handleErrorTypeChange">
+          <view class="picker-text">{{selectedErrorType || '请选择错误类型'}}</view>
+        </picker>
+      </view>
+      <view class="form-item">
+        <text class="label">错误描述</text>
+        <textarea 
+          class="textarea" 
+          placeholder="请详细描述发现的错误" 
+          value="{{errorDescription}}"
+          bindinput="handleErrorDescriptionInput"
+        />
+      </view>
+      <button class="submit-btn" bindtap="submitErrorFeedback">提交反馈</button>
+    </view>
+  </view>
+  
+  <!-- 加载提示 -->
+  <view class="loading" wx:if="{{loading}}">
+    <text>处理中...</text>
+  </view>
+</view>

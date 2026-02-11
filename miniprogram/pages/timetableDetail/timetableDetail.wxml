@@ -1,0 +1,111 @@
+<!-- 课表详情页面 -->
+<view class="container">
+  <!-- 导航栏 -->
+  <view class="navbar">
+    <text class="nav-title">课表详情</text>
+  </view>
+  
+  <!-- 课表基本信息 -->
+  <view class="info-section">
+    <text class="timetable-name">{{timetable.name}}</text>
+    <view class="timetable-meta">
+      <text class="meta-item">导入 {{timetable.shareCount}} 次</text>
+      <text class="meta-item">•</text>
+      <text class="meta-item">{{timetable.ratingCount}} 人评价</text>
+      <text class="meta-item">•</text>
+      <text class="meta-item">{{timetable.averageRating}} 星</text>
+    </view>
+    <view class="timetable-actions">
+      <button class="action-btn import-btn" bindtap="importTimetable">导入课表</button>
+      <button class="action-btn share-btn" bindtap="shareTimetable">分享课表</button>
+    </view>
+    <view wx:if="{{timetable.isOfficial}}" class="official-badge">官方认证</view>
+  </view>
+  
+  <!-- 课程列表 -->
+  <view class="courses-section">
+    <text class="section-title">课程列表</text>
+    <view class="course-list">
+      <view wx:for="{{timetable.courses}}" wx:key="index" class="course-item">
+        <view class="course-header">
+          <text class="course-name">{{item.courseName}}</text>
+          <text class="course-time">{{weekDays[item.dayOfWeek - 1]}} {{item.startTime}}-{{item.endTime}}</text>
+        </view>
+        <view class="course-info">
+          <text class="info-item">教师：{{item.teacher || '未知'}}</text>
+          <text class="info-item">地点：{{item.location || '未知'}}</text>
+          <text class="info-item">周次：{{item.weeks}}</text>
+          <text class="info-item">简介：{{item.description || '暂无'}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 评价系统 -->
+  <view class="rating-section">
+    <text class="section-title">评价与反馈</text>
+    
+    <!-- 用户评价操作 -->
+    <view class="user-rating">
+      <text class="rating-title">我的评价</text>
+      <view class="rating-actions">
+        <button class="action-btn like-btn" bindtap="likeTimetable" style="background-color: {{hasLiked ? '#ff4d4f' : '#f0f0f0'}}; color: {{hasLiked ? '#ffffff' : '#333333'}};">
+          {{hasLiked ? '已点赞' : '点赞'}}
+        </button>
+        <view class="star-rating">
+          <text class="rating-label">评分：</text>
+          <view class="stars">
+            <text wx:for="[1, 2, 3, 4, 5]" wx:key="index" class="star {{userRating >= index + 1 ? 'active' : ''}}" bindtap="rateTimetable" data-rating="{{index + 1}}">
+              ★
+            </text>
+          </view>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 评价统计 -->
+    <view class="rating-stats">
+      <view class="average-rating">
+        <text class="rating-value">{{timetable.averageRating}}</text>
+        <text class="rating-label">平均分</text>
+      </view>
+      <view class="rating-distribution">
+        <view wx:for="[5, 4, 3, 2, 1]" wx:key="index" class="rating-bar">
+          <text class="rating-star">{{item}}星</text>
+          <view class="bar-container">
+            <view class="bar" style="width: {{getRatingPercentage(item)}}%"></view>
+          </view>
+          <text class="rating-count">{{getRatingCount(item)}}人</text>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 评价列表 -->
+    <view class="reviews-section">
+      <text class="reviews-title">用户评价</text>
+      <view class="review-list">
+        <view wx:for="{{reviews}}" wx:key="index" class="review-item">
+          <view class="review-header">
+            <text class="reviewer">用户{{index + 1}}</text>
+            <text class="review-time">{{formatTime(item.createTime)}}</text>
+          </view>
+          <view class="review-content">
+            <view class="review-rating">
+              <text wx:for="[1, 2, 3, 4, 5]" wx:key="starIndex" class="star {{item.rating >= starIndex + 1 ? 'active' : ''}}">
+                ★
+              </text>
+            </view>
+          </view>
+        </view>
+        <view wx:if="{{reviews.length === 0}}" class="no-reviews">
+          <text>暂无评价，快来成为第一个评价的人吧！</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 加载提示 -->
+  <view class="loading" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+</view>

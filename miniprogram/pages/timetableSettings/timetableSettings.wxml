@@ -1,0 +1,80 @@
+<!--timetableSettings.wxml - 课表设置页面-->
+<view class="container">
+  <!-- 设置表单 -->
+  <scroll-view class="settings-scroll" scroll-y>
+    <view class="settings-content">
+      <!-- 基本信息 -->
+      <view class="settings-group">
+        <view class="group-title">基本信息</view>
+        <view class="settings-item">
+          <text class="item-label">课表名称</text>
+          <input class="item-input" placeholder="未命名" value="{{settings.name}}" bindinput="inputName"/>
+        </view>
+      </view>
+
+      <!-- 学期设置 -->
+      <view class="settings-group">
+        <view class="group-title">学期设置</view>
+        <view class="settings-item">
+          <text class="item-label">第一周开始日期</text>
+          <picker mode="date" value="{{settings.startDate}}" bindchange="onStartDateChange">
+            <text class="item-value">{{settings.startDate}}</text>
+          </picker>
+        </view>
+        <view class="settings-item">
+          <text class="item-label">当前周</text>
+          <text class="item-value">第 {{currentWeek}} 周</text>
+        </view>
+        <view class="settings-item">
+          <text class="item-label">学期总周数</text>
+          <picker mode="selector" range="{{weekOptions}}" value="{{settings.totalWeeks - 10}}" bindchange="onTotalWeeksChange">
+            <text class="item-value">{{settings.totalWeeks}} 周</text>
+          </picker>
+        </view>
+      </view>
+
+      <!-- 课程时间设置 -->
+      <view class="settings-group">
+        <view class="group-title">
+          <text>课程时间设置</text>
+          <text class="group-desc">点击时间可修改每节课的起止时间</text>
+        </view>
+        <view class="period-list">
+          <view wx:for="{{settings.timeSlots}}" wx:key="index" class="period-item {{index === 8 ? 'evening-divider' : ''}}">
+            <view class="period-info">
+              <text class="period-num">第 {{index + 1}} 节</text>
+              <text wx:if="{{index === 8}}" class="period-tag evening">晚自习</text>
+              <text wx:elif="{{index < 8}}" class="period-tag daytime">白天</text>
+            </view>
+            <view class="period-time">
+              <picker mode="time" value="{{item.start}}" data-index="{{index}}" data-type="start" bindchange="onTimeSlotChange">
+                <text class="time-value">{{item.start}}</text>
+              </picker>
+              <text class="time-separator">-</text>
+              <picker mode="time" value="{{item.end}}" data-index="{{index}}" data-type="end" bindchange="onTimeSlotChange">
+                <text class="time-value">{{item.end}}</text>
+              </picker>
+            </view>
+          </view>
+        </view>
+        <view class="reset-time-btn" bindtap="resetTimeSlots">恢复默认时间</view>
+      </view>
+
+      <!-- 默认配置 - 只保留这一项 -->
+      <view class="settings-group">
+        <view class="group-title">默认配置</view>
+        <view class="settings-item switch-item">
+          <view class="item-content">
+            <text class="item-label">将此课表配置用作默认配置</text>
+            <text class="item-desc" wx:if="{{!hasOtherDefault}}">应用此项后，新建的课表会使用此课表中除了上课时间、课表名称、开学日期以外的配置</text>
+            <text class="item-desc warning" wx:if="{{hasOtherDefault}}">已有默认课表（{{otherDefaultName}}），开启将覆盖原有设置</text>
+          </view>
+          <switch checked="{{settings.isDefault}}" bindchange="toggleDefault" color="#667eea"/>
+        </view>
+      </view>
+    </view>
+
+    <!-- 底部占位 -->
+    <view class="bottom-space"></view>
+  </scroll-view>
+</view>

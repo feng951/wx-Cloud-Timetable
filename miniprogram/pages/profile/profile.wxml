@@ -1,0 +1,77 @@
+<!--profile.wxml-->
+<view class="container">
+  <!-- 未登录状态 -->
+  <view wx:if="{{!isLoggedIn}}" class="login-section">
+    <view class="login-icon">👤</view>
+    <text class="login-title">欢迎使用风表</text>
+    <text class="login-subtitle">登录后可管理您的课表</text>
+    <!-- 使用 button 的 open-type 获取用户信息 -->
+    <button 
+      class="login-btn" 
+      bindtap="login"
+      loading="{{isLoading}}"
+    >
+      <text class="btn-text">微信登录</text>
+    </button>
+  </view>
+
+  <!-- 已登录状态 -->
+  <view wx:if="{{isLoggedIn}}" class="profile-content">
+    <!-- 用户信息卡片 -->
+    <view class="user-card">
+      <image 
+        class="user-avatar" 
+        src="{{userInfo.avatarUrl || '/images/avatar.png'}}" 
+        mode="aspectFill"
+        binderror="onAvatarError"
+      ></image>
+      <view class="user-info">
+        <text class="user-name">{{userInfo.nickName || '微信用户'}}</text>
+        <text class="user-id">ID: {{userId || 'A0000'}}</text>
+      </view>
+    </view>
+
+    <!-- 统计卡片 -->
+    <view class="stats-card">
+      <view class="stat-item">
+        <text class="stat-num">{{timetableCount}}</text>
+        <text class="stat-label">我的课表</text>
+      </view>
+      <view class="stat-divider"></view>
+      <view class="stat-item">
+        <text class="stat-num">{{courseCount}}</text>
+        <text class="stat-label">课程总数</text>
+      </view>
+    </view>
+
+    <!-- 功能菜单 -->
+    <view class="menu-section">
+      <view class="menu-group">
+        <view class="menu-item" bindtap="manageTimetables">
+          <view class="menu-left">
+            <view class="menu-icon blue">📚</view>
+            <text class="menu-text">管理课表</text>
+          </view>
+          <text class="menu-arrow">›</text>
+        </view>
+      </view>
+
+      <view class="menu-group">
+        <view class="menu-item" bindtap="about">
+          <view class="menu-left">
+            <view class="menu-icon orange">ℹ</view>
+            <text class="menu-text">关于我们</text>
+          </view>
+          <text class="menu-arrow">›</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 退出登录 -->
+    <view class="logout-section">
+      <button class="logout-btn" bindtap="logout">
+        <text class="btn-text">退出登录</text>
+      </button>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,389 @@
+/**courseInput.wxss**/
+
+page {
+  background-color: #F5F7FA;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', PingFang SC, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 表单区域 */
+.form-scroll {
+  flex: 1;
+}
+
+.form-content {
+  padding: 30rpx;
+}
+
+.form-item {
+  display: flex;
+  align-items: center;
+  background-color: #FFFFFF;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+}
+
+.item-icon {
+  width: 56rpx;
+  height: 56rpx;
+  border-radius: 12rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32rpx;
+  margin-right: 24rpx;
+}
+
+.item-icon.blue {
+  background-color: #EEF2FF;
+}
+
+.item-icon.purple {
+  background-color: #F3E8FF;
+}
+
+.item-icon.yellow {
+  background-color: #FEF9C3;
+}
+
+.item-icon.green {
+  background-color: #ECFDF5;
+}
+
+.item-icon.orange {
+  background-color: #FFF7ED;
+}
+
+.item-icon.red {
+  background-color: #FEF2F2;
+}
+
+.item-input {
+  flex: 1;
+  font-size: 30rpx;
+  color: #1A1A1A;
+}
+
+.item-label {
+  flex: 1;
+  font-size: 30rpx;
+  color: #666666;
+}
+
+.color-preview {
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: 50%;
+  border: 4rpx solid #F0F0F0;
+}
+
+/* 分段标题 */
+.section-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #1A1A1A;
+  margin: 30rpx 0 20rpx 10rpx;
+}
+
+/* 时间段区域 */
+.time-section {
+  background-color: #FFFFFF;
+  border-radius: 16rpx;
+  padding: 20rpx 30rpx;
+}
+
+.time-item {
+  display: flex;
+  align-items: center;
+  padding: 24rpx 0;
+  border-bottom: 1rpx solid #F5F7FA;
+}
+
+.time-item:last-child {
+  border-bottom: none;
+}
+
+.time-item.week-select {
+  justify-content: space-between;
+}
+
+.time-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.time-label {
+  font-size: 26rpx;
+  color: #999999;
+  margin-bottom: 4rpx;
+}
+
+.time-value {
+  font-size: 30rpx;
+  color: #1A1A1A;
+}
+
+.arrow {
+  font-size: 36rpx;
+  color: #CCCCCC;
+  margin-left: 16rpx;
+}
+
+.time-icon {
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: 50%;
+  background-color: #F5F7FA;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28rpx;
+  margin-right: 20rpx;
+}
+
+.time-text {
+  flex: 1;
+  font-size: 30rpx;
+  color: #1A1A1A;
+}
+
+/* 单双周选择 */
+.odd-even-section {
+  display: flex;
+  padding: 20rpx 0;
+  margin-left: 68rpx;
+  border-bottom: 1rpx solid #F5F7FA;
+  gap: 20rpx;
+}
+
+.odd-even-item {
+  padding: 16rpx 32rpx;
+  background-color: #F5F7FA;
+  border-radius: 32rpx;
+  font-size: 28rpx;
+  color: #666666;
+}
+
+.odd-even-item.active {
+  background-color: #667eea;
+  color: #FFFFFF;
+}
+
+.custom-time {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.custom-time text {
+  font-size: 26rpx;
+  color: #999999;
+}
+
+/* 自定义时间输入 */
+.custom-time-inputs {
+  padding: 20rpx 0 10rpx 68rpx;
+}
+
+.custom-input-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #F5F7FA;
+}
+
+.custom-input-item:last-child {
+  border-bottom: none;
+}
+
+.custom-label {
+  font-size: 28rpx;
+  color: #666666;
+}
+
+.custom-value {
+  font-size: 30rpx;
+  color: #667eea;
+  padding: 12rpx 24rpx;
+  background-color: #F5F7FA;
+  border-radius: 8rpx;
+}
+
+/* 删除按钮 */
+.delete-section {
+  padding: 40rpx 30rpx;
+}
+
+.delete-btn {
+  width: 100%;
+  height: 96rpx;
+  background-color: #FFFFFF;
+  color: #FF6B6B;
+  font-size: 30rpx;
+  border: 1rpx solid #FF6B6B;
+  border-radius: 48rpx;
+}
+
+.delete-btn::after {
+  border: none;
+}
+
+.delete-btn:active {
+  background-color: #FFF5F5;
+}
+
+.bottom-space {
+  height: 60rpx;
+}
+
+/* 颜色选择器弹窗 */
+.color-picker-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.color-picker {
+  background-color: #FFFFFF;
+  border-radius: 24rpx;
+  padding: 40rpx;
+  width: 80%;
+  max-width: 600rpx;
+}
+
+.picker-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #1A1A1A;
+  text-align: center;
+  margin-bottom: 30rpx;
+}
+
+.color-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20rpx;
+  justify-content: center;
+}
+
+.color-option {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+}
+
+.color-option.active {
+  border: 6rpx solid #1A1A1A;
+}
+
+/* 周数选择弹窗 */
+.week-picker-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 200;
+}
+
+.week-picker {
+  background-color: #FFFFFF;
+  border-radius: 32rpx 32rpx 0 0;
+  padding: 30rpx;
+  width: 100%;
+  max-height: 80vh;
+}
+
+.picker-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 30rpx;
+  border-bottom: 1rpx solid #F5F7FA;
+}
+
+.picker-cancel {
+  font-size: 30rpx;
+  color: #999999;
+  padding: 10rpx 20rpx;
+}
+
+.picker-confirm {
+  font-size: 30rpx;
+  color: #667eea;
+  font-weight: 600;
+  padding: 10rpx 20rpx;
+}
+
+.week-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+  padding: 30rpx 0;
+  max-height: 50vh;
+  overflow-y: auto;
+}
+
+.week-item {
+  width: calc(20% - 13rpx);
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #F5F7FA;
+  border-radius: 16rpx;
+  border: 2rpx solid transparent;
+}
+
+.week-item.selected {
+  background-color: #667eea;
+  border-color: #667eea;
+}
+
+.week-item.selected .week-num {
+  color: #FFFFFF;
+}
+
+.week-item.disabled {
+  opacity: 0.3;
+}
+
+.week-num {
+  font-size: 26rpx;
+  color: #1A1A1A;
+}
+
+.quick-actions {
+  display: flex;
+  justify-content: center;
+  gap: 40rpx;
+  padding: 20rpx 0;
+  border-top: 1rpx solid #F5F7FA;
+}
+
+.quick-btn {
+  font-size: 28rpx;
+  color: #667eea;
+  padding: 16rpx 32rpx;
+  background-color: #F5F7FA;
+  border-radius: 32rpx;
+}

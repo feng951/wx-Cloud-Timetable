@@ -1,0 +1,114 @@
+<!--about.wxml - 关于我们页面-->
+<view class="about-container">
+  <!-- 顶部装饰区域 -->
+  <view class="header-section">
+    <view class="header-bg"></view>
+    <view class="app-icon-wrapper">
+      <view class="app-icon">
+        <text class="icon-text">📚</text>
+      </view>
+    </view>
+    <text class="app-name">风表</text>
+    <text class="app-slogan">简洁高效的课表管理工具</text>
+  </view>
+
+  <!-- 开发者信息卡片 -->
+  <view class="developer-card">
+    <view class="card-header">
+      <view class="header-line"></view>
+      <text class="card-title">开发者</text>
+    </view>
+    <view class="developer-info">
+      <view class="avatar-wrapper">
+        <view class="developer-avatar">
+          <text class="avatar-text">B</text>
+        </view>
+        <view class="status-dot"></view>
+      </view>
+      <view class="developer-details">
+        <text class="developer-name">BEIFENGC</text>
+        <text class="developer-role">个人开发者</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 联系方式卡片 -->
+  <view class="contact-card">
+    <view class="card-header">
+      <view class="header-line"></view>
+      <text class="card-title">联系方式</text>
+    </view>
+    <view class="contact-list">
+      <!-- QQ -->
+      <view class="contact-item" bindtap="copyQQ">
+        <view class="contact-icon qq-icon">
+          <text class="iconfont">🐧</text>
+        </view>
+        <view class="contact-info">
+          <text class="contact-label">QQ</text>
+          <text class="contact-value">1695080607</text>
+        </view>
+        <view class="copy-btn">
+          <text class="copy-text">复制</text>
+        </view>
+      </view>
+      
+      <!-- 邮箱 -->
+      <view class="contact-item" bindtap="copyEmail">
+        <view class="contact-icon email-icon">
+          <text class="iconfont">✉️</text>
+        </view>
+        <view class="contact-info">
+          <text class="contact-label">邮箱</text>
+          <text class="contact-value">yu1695080607@foxmail.com</text>
+        </view>
+        <view class="copy-btn">
+          <text class="copy-text">复制</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 代码仓库卡片 -->
+  <view class="repo-card">
+    <view class="card-header">
+      <view class="header-line"></view>
+      <text class="card-title">开源仓库</text>
+    </view>
+    <view class="repo-list">
+      <!-- GitHub -->
+      <view class="repo-item" bindtap="openGitHub">
+        <view class="repo-icon github-icon">
+          <text class="iconfont">🐙</text>
+        </view>
+        <view class="repo-info">
+          <text class="repo-name">GitHub</text>
+          <text class="repo-desc">wx-Cloud-Timetable</text>
+        </view>
+        <view class="arrow-icon">
+          <text class="arrow">›</text>
+        </view>
+      </view>
+      
+      <!-- Gitee -->
+      <view class="repo-item" bindtap="openGitee">
+        <view class="repo-icon gitee-icon">
+          <text class="iconfont">🌟</text>
+        </view>
+        <view class="repo-info">
+          <text class="repo-name">Gitee</text>
+          <text class="repo-desc">wx-cloud-timetable</text>
+        </view>
+        <view class="arrow-icon">
+          <text class="arrow">›</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 版本信息 -->
+  <view class="version-section">
+    <text class="version-text">Version 1.0.1</text>
+    <text class="copyright">© 2026 BEIFENGC. All rights reserved.</text>
+  </view>
+</view>

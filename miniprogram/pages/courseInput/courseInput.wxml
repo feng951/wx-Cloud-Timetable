@@ -1,0 +1,135 @@
+<!--courseInput.wxml-->
+<view class="container">
+  <!-- 表单区域 -->
+  <scroll-view class="form-scroll" scroll-y>
+    <view class="form-content">
+      <!-- 课程名称 -->
+      <view class="form-item">
+        <view class="item-icon blue">📖</view>
+        <input class="item-input" placeholder="课程名称" value="{{course.name}}" bindinput="inputName"/>
+      </view>
+
+      <!-- 颜色选择 -->
+      <view class="form-item" bindtap="showColorPicker">
+        <view class="item-icon purple">🎨</view>
+        <text class="item-label">{{course.color ? '点击更改颜色' : '选择课程颜色'}}</text>
+        <view class="color-preview" style="background-color: {{course.color}}"></view>
+      </view>
+
+      <!-- 学分 -->
+      <view class="form-item">
+        <view class="item-icon yellow">🏆</view>
+        <input class="item-input" placeholder="学分（可不填）" type="digit" value="{{course.credit}}" bindinput="inputCredit"/>
+      </view>
+
+      <!-- 备注 -->
+      <view class="form-item">
+        <view class="item-icon green">📝</view>
+        <input class="item-input" placeholder="备注（可不填）" value="{{course.remark}}" bindinput="inputRemark"/>
+      </view>
+
+      <!-- 时间段 -->
+      <view class="section-title">时间段</view>
+      <view class="time-section">
+        <!-- 周数选择 - 改为复选 -->
+        <view class="time-item week-select" bindtap="showWeekPicker">
+          <view class="time-icon">📅</view>
+          <view class="time-content">
+            <text class="time-label">上课周数</text>
+            <text class="time-value">{{selectedWeeksText}}</text>
+          </view>
+          <text class="arrow">›</text>
+        </view>
+
+        <!-- 单双周选择 -->
+        <view class="odd-even-section">
+          <view class="odd-even-item {{oddEven === 0 ? 'active' : ''}}" bindtap="selectOddEven" data-value="0">全周</view>
+          <view class="odd-even-item {{oddEven === 1 ? 'active' : ''}}" bindtap="selectOddEven" data-value="1">单周</view>
+          <view class="odd-even-item {{oddEven === 2 ? 'active' : ''}}" bindtap="selectOddEven" data-value="2">双周</view>
+        </view>
+
+        <view class="time-item">
+          <view class="time-icon">⏰</view>
+          <picker mode="multiSelector" range="{{timeRange}}" value="{{timeIndex}}" bindchange="onTimeChange">
+            <view class="time-text">{{weekDays[day]}} 第 {{course.startPeriod}} - {{course.endPeriod}} 节</view>
+          </picker>
+        </view>
+
+        <!-- 自定义时间输入 -->
+        <view wx:if="{{useCustomTime}}" class="custom-time-inputs">
+          <view class="custom-input-item">
+            <text class="custom-label">开始时间</text>
+            <picker mode="time" value="{{customStartTime}}" bindchange="onCustomStartChange">
+              <view class="custom-value">{{customStartTime}}</view>
+            </picker>
+          </view>
+          <view class="custom-input-item">
+            <text class="custom-label">结束时间</text>
+            <picker mode="time" value="{{customEndTime}}" bindchange="onCustomEndChange">
+              <view class="custom-value">{{customEndTime}}</view>
+            </picker>
+          </view>
+        </view>
+      </view>
+
+      <!-- 教师 -->
+      <view class="form-item">
+        <view class="item-icon orange">👤</view>
+        <input class="item-input" placeholder="授课老师（可不填）" value="{{course.teacher}}" bindinput="inputTeacher"/>
+      </view>
+
+      <!-- 上课地点 -->
+      <view class="form-item">
+        <view class="item-icon red">📍</view>
+        <input class="item-input" placeholder="上课地点（可不填）" value="{{course.location}}" bindinput="inputLocation"/>
+      </view>
+    </view>
+
+    <!-- 删除按钮 -->
+    <view wx:if="{{isEdit}}" class="delete-section">
+      <button class="delete-btn" bindtap="deleteCourse">删除课程</button>
+    </view>
+
+    <!-- 底部占位 -->
+    <view class="bottom-space"></view>
+  </scroll-view>
+
+  <!-- 颜色选择器弹窗 -->
+  <view wx:if="{{showColorPicker}}" class="color-picker-mask" bindtap="hideColorPicker">
+    <view class="color-picker" catchtap="preventHide">
+      <view class="picker-title">选择颜色</view>
+      <view class="color-grid">
+        <view wx:for="{{colors}}" wx:key="*this" 
+              class="color-option {{course.color === item ? 'active' : ''}}" 
+              style="background-color: {{item}}"
+              bindtap="selectColor" 
+              data-color="{{item}}"></view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 周数选择弹窗 -->
+  <view wx:if="{{showWeekPicker}}" class="week-picker-mask" bindtap="hideWeekPicker">
+    <view class="week-picker" catchtap="preventHide">
+      <view class="picker-header">
+        <text class="picker-cancel" bindtap="hideWeekPicker">取消</text>
+        <text class="picker-title">选择上课周数</text>
+        <text class="picker-confirm" bindtap="confirmWeekPicker">确定</text>
+      </view>
+      <view class="week-grid">
+        <view wx:for="{{weekOptions}}" wx:key="index" 
+              class="week-item {{item.selected ? 'selected' : ''}} {{item.disabled ? 'disabled' : ''}}"
+              bindtap="toggleWeek" 
+              data-index="{{index}}">
+          <text class="week-num">{{item.week}}周</text>
+        </view>
+      </view>
+      <view class="quick-actions">
+        <text class="quick-btn" bindtap="selectAllWeeks">全选</text>
+        <text class="quick-btn" bindtap="selectOddWeeks">单周</text>
+        <text class="quick-btn" bindtap="selectEvenWeeks">双周</text>
+        <text class="quick-btn" bindtap="clearWeeks">清空</text>
+      </view>
+    </view>
+  </view>
+</view>

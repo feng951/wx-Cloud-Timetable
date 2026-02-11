@@ -1,0 +1,136 @@
+<!-- 课表展示页面 -->
+<view class="container">
+  <!-- 导航栏 -->
+  <view class="navbar">
+    <text class="nav-title">{{timetableName}}</text>
+    <button class="edit-btn" bindtap="navigateToCourseInput">编辑</button>
+  </view>
+  
+  <!-- 视图切换 -->
+  <view class="view-switcher">
+    <view class="switch-tab {{activeView === 'week' ? 'active' : ''}}" bindtap="switchView" data-view="week">
+      <text>周视图</text>
+    </view>
+    <view class="switch-tab {{activeView === 'day' ? 'active' : ''}}" bindtap="switchView" data-view="day">
+      <text>日视图</text>
+    </view>
+  </view>
+  
+  <!-- 日期选择器 -->
+  <view class="date-selector">
+    <button class="date-btn" bindtap="prevPeriod">上{{activeView === 'week' ? '周' : '天'}}</button>
+    <text class="current-date">{{currentPeriodText}}</text>
+    <button class="date-btn" bindtap="nextPeriod">下{{activeView === 'week' ? '周' : '天'}}</button>
+  </view>
+  
+  <!-- 周视图 -->
+  <view class="week-view" wx:if="{{activeView === 'week'}}">
+    <view class="week-header">
+      <view class="time-column">
+        <text class="time-label">时间</text>
+      </view>
+      <view wx:for="{{weekDays}}" wx:key="index" class="day-column">
+        <text class="day-label">{{item}}</text>
+        <text class="date-label">{{weekDates[index]}}</text>
+      </view>
+    </view>
+    <view class="week-body">
+      <view wx:for="{{timeSlots}}" wx:key="index" class="time-slot">
+        <view class="time-column">
+          <text class="time-text">{{item}}</text>
+        </view>
+        <view wx:for="{{weekDays}}" wx:key="dayIndex" class="day-column">
+          <view class="course-container">
+            <view 
+              wx:for="{{getCoursesByDayAndTime(index, dayIndex)}}" 
+              wx:key="courseIndex" 
+              class="course-item"
+              style="background-color: {{course.color || '#1890ff'}}"
+              bindtap="showCourseDetail" 
+              data-course="{{course}}"
+            >
+              <text class="course-name">{{course.courseName}}</text>
+              <text class="course-info">{{course.location}}</text>
+              <text class="course-info">{{course.teacher}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 日视图 -->
+  <view class="day-view" wx:if="{{activeView === 'day'}}">
+    <view class="day-header">
+      <text class="day-title">{{currentDayText}}</text>
+    </view>
+    <view class="day-body">
+      <view wx:for="{{timeSlots}}" wx:key="index" class="day-time-slot">
+        <view class="day-time-column">
+          <text class="day-time-text">{{item}}</text>
+        </view>
+        <view class="day-course-column">
+          <view 
+            wx:for="{{getCoursesByDayTime(index)}}" 
+            wx:key="courseIndex" 
+            class="day-course-item"
+            style="background-color: {{course.color || '#1890ff'}}"
+            bindtap="showCourseDetail" 
+            data-course="{{course}}"
+          >
+            <text class="day-course-name">{{course.courseName}}</text>
+            <text class="day-course-time">{{course.startTime}} - {{course.endTime}}</text>
+            <text class="day-course-info">{{course.location}}</text>
+            <text class="day-course-info">{{course.teacher}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 课程详情弹窗 -->
+  <view class="course-detail-modal" wx:if="{{showDetailModal}}">
+    <view class="modal-content">
+      <view class="modal-header">
+        <text class="modal-title">课程详情</text>
+        <button class="close-btn" bindtap="closeDetailModal">×</button>
+      </view>
+      <view class="modal-body">
+        <view class="detail-item">
+          <text class="detail-label">课程名称</text>
+          <text class="detail-value">{{selectedCourse.courseName}}</text>
+        </view>
+        <view class="detail-item">
+          <text class="detail-label">教师</text>
+          <text class="detail-value">{{selectedCourse.teacher || '未填写'}}</text>
+        </view>
+        <view class="detail-item">
+          <text class="detail-label">地点</text>
+          <text class="detail-value">{{selectedCourse.location || '未填写'}}</text>
+        </view>
+        <view class="detail-item">
+          <text class="detail-label">时间</text>
+          <text class="detail-value">{{weekDays[selectedCourse.dayOfWeek - 1]}} {{selectedCourse.startTime}} - {{selectedCourse.endTime}}</text>
+        </view>
+        <view class="detail-item">
+          <text class="detail-label">周次</text>
+          <text class="detail-value">{{selectedCourse.weeks}}</text>
+        </view>
+        <view class="detail-item">
+          <text class="detail-label">课程简介</text>
+          <text class="detail-value detail-description">{{selectedCourse.description || '未填写'}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 加载提示 -->
+  <view class="loading" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+  
+  <!-- 空状态 -->
+  <view class="empty-state" wx:if="{{!loading && courses.length === 0}}">
+    <text class="empty-text">暂无课程信息</text>
+  </view>
+</view>

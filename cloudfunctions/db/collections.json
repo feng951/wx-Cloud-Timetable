@@ -1,0 +1,37 @@
+{
+  "collections": [
+    {
+      "name": "users",
+      "description": "用户集合",
+      "fields": [
+        { "name": "openid", "type": "string", "required": true },
+        { "name": "unionid", "type": "string", "required": false },
+        { "name": "nickName", "type": "string", "required": false },
+        { "name": "avatarUrl", "type": "string", "required": false },
+        { "name": "mainTimetableId", "type": "string", "required": false },
+        { "name": "createTime", "type": "date", "required": true },
+        { "name": "updateTime", "type": "date", "required": true }
+      ],
+      "indexes": [
+        { "name": "openid_index", "fields": [{ "openid": 1 }], "unique": true }
+      ]
+    },
+    {
+      "name": "timetables",
+      "description": "课表集合",
+      "fields": [
+        { "name": "openid", "type": "string", "required": true },
+        { "name": "name", "type": "string", "required": true },
+        { "name": "isMain", "type": "boolean", "required": true },
+        { "name": "courses", "type": "array", "required": true },
+        { "name": "createTime", "type": "date", "required": true },
+        { "name": "updateTime", "type": "date", "required": true },
+        { "name": "isDeleted", "type": "boolean", "required": true }
+      ],
+      "indexes": [
+        { "name": "openid_index", "fields": [{ "openid": 1 }] },
+        { "name": "isMain_index", "fields": [{ "openid": 1, "isMain": 1 }] }
+      ]
+    }
+  ]
+}
