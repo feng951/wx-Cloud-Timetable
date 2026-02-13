@@ -69,6 +69,61 @@ page {
   border: none;
 }
 
+/* 协议同意区域 */
+.agreement-section {
+  padding: 0 0 30rpx;
+}
+
+.checkbox-wrapper {
+  display: flex;
+  align-items: flex-start;
+}
+
+.checkbox {
+  width: 36rpx;
+  height: 36rpx;
+  border: 2rpx solid #999999;
+  border-radius: 4rpx;
+  margin-right: 16rpx;
+  margin-top: 4rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.checkbox.checked {
+  background-color: #000000;
+  border-color: #000000;
+}
+
+.check-icon {
+  font-size: 24rpx;
+  color: #FFFFFF;
+  font-weight: bold;
+}
+
+.agreement-text {
+  flex: 1;
+  font-size: 26rpx;
+  line-height: 1.6;
+}
+
+.text-normal {
+  color: #666666;
+}
+
+.text-link {
+  color: #000000;
+  text-decoration: underline;
+}
+
+/* 禁用状态的登录按钮 */
+.login-btn.primary.disabled {
+  background-color: #CCCCCC;
+  color: #FFFFFF;
+}
+
 .modal-footer {
   margin-top: 32rpx;
   text-align: center;

@@ -29,7 +29,8 @@ Page({
     isLoading: false,
     syncStatus: '',
     courseCount: 0,
-    showLoginModal: false
+    showLoginModal: false,
+    hasAgreed: false
   },
 
   onLoad() {
@@ -249,8 +250,13 @@ Page({
     return count;
   },
 
-  showLoginModal() { this.setData({ showLoginModal: true }); },
-  closeLoginModal() { this.setData({ showLoginModal: false }); },
+  showLoginModal() { this.setData({ showLoginModal: true, hasAgreed: false }); },
+  closeLoginModal() { this.setData({ showLoginModal: false, hasAgreed: false }); },
+
+  // 切换协议同意状态
+  toggleAgreement() {
+    this.setData({ hasAgreed: !this.data.hasAgreed });
+  },
 
   async login() {
     this.setData({ isLoading: true, syncStatus: '登录中...' });
