@@ -1,0 +1,158 @@
+<!--privacy.wxml - 隐私政策页面-->
+<view class="privacy-container">
+  <!-- 页面标题 -->
+  <view class="page-header">
+    <text class="page-title">隐私政策</text>
+    <text class="page-subtitle">Privacy Policy</text>
+  </view>
+
+  <!-- 隐私政策内容 -->
+  <view class="privacy-content">
+    <view class="content-section">
+      <text class="section-title">一、引言</text>
+      <text class="section-text">
+        风表（以下简称"我们"或"本小程序"）非常重视用户的隐私保护。本隐私政策旨在向您说明我们如何收集、使用、存储和保护您的个人信息。请您在使用本小程序前仔细阅读本政策。
+      </text>
+    </view>
+
+    <view class="content-section">
+      <text class="section-title">二、我们收集的信息</text>
+      <text class="section-text">
+        1. 微信公开信息
+      </text>
+      <text class="section-text indent">
+        当您使用微信一键登录功能时，我们会收集您的微信昵称和头像。这些信息仅用于标识用户身份和展示用户资料。
+      </text>
+      <text class="section-text">
+        2. 课表数据
+      </text>
+      <text class="section-text indent">
+        您创建和编辑的课表数据主要存储在您的本地设备中。我们不会主动收集或上传您的课表内容到服务器。
+      </text>
+      <text class="section-text">
+        3. 设备信息
+      </text>
+      <text class="section-text indent">
+        我们可能收集您的设备型号、操作系统版本等基本信息，用于优化小程序的兼容性和用户体验。
+      </text>
+    </view>
+
+    <view class="content-section">
+      <text class="section-title">三、信息的使用</text>
+      <text class="section-text">
+        我们使用收集的信息用于以下目的：
+      </text>
+      <text class="section-text indent">
+        • 提供课表管理功能服务
+      </text>
+      <text class="section-text indent">
+        • 识别用户身份，实现数据同步（如用户选择使用）
+      </text>
+      <text class="section-text indent">
+        • 改进和优化小程序的功能和体验
+      </text>
+      <text class="section-text indent">
+        • 处理用户反馈和技术支持请求
+      </text>
+    </view>
+
+    <view class="content-section">
+      <text class="section-title">四、信息的存储与保护</text>
+      <text class="section-text">
+        1. 本地存储
+      </text>
+      <text class="section-text indent">
+        您的课表数据主要存储在微信小程序的本地存储空间中，仅在您的设备上保存。
+      </text>
+      <text class="section-text">
+        2. 云端存储（可选）
+      </text>
+      <text class="section-text indent">
+        如您使用课表分享功能，相关数据将临时存储在微信云开发环境中，用于实现分享功能。分享数据将在合理期限后自动删除。
+      </text>
+      <text class="section-text">
+        3. 安全措施
+      </text>
+      <text class="section-text indent">
+        我们采取合理的技术和管理措施保护您的信息安全，防止未经授权的访问、使用或泄露。
+      </text>
+    </view>
+
+    <view class="content-section">
+      <text class="section-title">五、信息的共享与披露</text>
+      <text class="section-text">
+        1. 我们不会将您的个人信息出售、交易或以其他方式转让给第三方。
+      </text>
+      <text class="section-text">
+        2. 在以下情况下，我们可能会披露您的信息：
+      </text>
+      <text class="section-text indent">
+        • 遵守法律法规的要求
+      </text>
+      <text class="section-text indent">
+        • 响应法院命令、法律程序或政府要求
+      </text>
+      <text class="section-text indent">
+        • 保护我们的权利、财产或安全
+      </text>
+    </view>
+
+    <view class="content-section">
+      <text class="section-title">六、您的权利</text>
+      <text class="section-text">
+        您享有以下权利：
+      </text>
+      <text class="section-text indent">
+        • 访问和查看您的个人信息
+      </text>
+      <text class="section-text indent">
+        • 更正或更新您的个人信息
+      </text>
+      <text class="section-text indent">
+        • 删除您的本地数据（通过退出登录或卸载小程序）
+      </text>
+      <text class="section-text indent">
+        • 撤回对信息收集的同意（通过退出登录）
+      </text>
+    </view>
+
+    <view class="content-section">
+      <text class="section-title">七、儿童隐私</text>
+      <text class="section-text">
+        本小程序主要面向学生群体。如果您是未成年人，请在监护人的指导下使用本小程序，并确保监护人同意您使用我们的服务。
+      </text>
+    </view>
+
+    <view class="content-section">
+      <text class="section-title">八、第三方服务</text>
+      <text class="section-text">
+        本小程序使用微信提供的登录和云服务。这些服务受其各自的隐私政策约束。我们建议您阅读微信的隐私政策以了解其数据处理方式。
+      </text>
+    </view>
+
+    <view class="content-section">
+      <text class="section-title">九、政策更新</text>
+      <text class="section-text">
+        我们可能会不时更新本隐私政策。更新后的政策将在本小程序内公布，重大变更我们会通过适当方式通知您。继续使用本小程序即表示您接受更新后的政策。
+      </text>
+    </view>
+
+    <view class="content-section">
+      <text class="section-title">十、联系我们</text>
+      <text class="section-text">
+        如您对本隐私政策有任何疑问或建议，请通过以下方式联系我们：
+      </text>
+      <text class="section-text">
+        • QQ：1695080607
+      </text>
+      <text class="section-text">
+        • 邮箱：yu1695080607@foxmail.com
+      </text>
+    </view>
+
+    <view class="version-info">
+      <text class="version-text">版本：1.0.0</text>
+      <text class="version-text">更新日期：2026年2月13日</text>
+    </view>
+  </view>
+</view>

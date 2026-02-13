@@ -282,6 +282,73 @@
   color: #999999;
 }
 
+/* 法律协议卡片 */
+.legal-card {
+  margin: 24rpx;
+  background-color: #FFFFFF;
+  border-radius: 12rpx;
+  padding: 24rpx;
+}
+
+.legal-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+
+.legal-item {
+  display: flex;
+  align-items: center;
+  padding: 24rpx;
+  background-color: #FAFAFA;
+  border-radius: 8rpx;
+}
+
+.legal-item:active {
+  background-color: #F0F0F0;
+}
+
+.legal-icon {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 12rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 16rpx;
+  flex-shrink: 0;
+}
+
+.agreement-icon {
+  background-color: #F0F5FF;
+}
+
+.privacy-icon {
+  background-color: #F6FFED;
+}
+
+.legal-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.legal-name {
+  font-size: 30rpx;
+  color: #1A1A1A;
+  font-weight: 600;
+  margin-bottom: 4rpx;
+  display: block;
+}
+
+.legal-desc {
+  font-size: 24rpx;
+  color: #666666;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 /* 版本信息 */
 .version-section {
   margin-top: 40rpx;

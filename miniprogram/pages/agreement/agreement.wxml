@@ -1,0 +1,143 @@
+<!--agreement.wxml - 用户协议页面-->
+<view class="agreement-container">
+  <!-- 页面标题 -->
+  <view class="page-header">
+    <text class="page-title">用户协议</text>
+    <text class="page-subtitle">User Agreement</text>
+  </view>
+
+  <!-- 协议内容 -->
+  <view class="agreement-content">
+    <view class="content-section">
+      <text class="section-title">一、协议概述</text>
+      <text class="section-text">
+        欢迎使用"风表"（以下简称"本小程序"）。本小程序由个人开发者BEIFENGC开发运营。在您使用本小程序之前，请仔细阅读本用户协议（以下简称"本协议"）。您使用本小程序即表示您已阅读、理解并同意接受本协议的全部条款。
+      </text>
+    </view>
+
+    <view class="content-section">
+      <text class="section-title">二、服务内容</text>
+      <text class="section-text">
+        1. 本小程序为用户提供课表管理工具服务，包括但不限于：
+      </text>
+      <text class="section-text indent">
+        • 个人课表的创建、编辑、查看和管理
+      </text>
+      <text class="section-text indent">
+        • 课表数据的本地存储
+      </text>
+      <text class="section-text indent">
+        • 课表分享功能（可选）
+      </text>
+      <text class="section-text indent">
+        • 课表广场浏览功能
+      </text>
+      <text class="section-text">
+        2. 用户可以通过微信账号登录使用本小程序的部分功能。
+      </text>
+    </view>
+
+    <view class="content-section">
+      <text class="section-title">三、账号与登录</text>
+      <text class="section-text">
+        1. 本小程序支持微信一键登录功能。登录时，我们将获取您的微信公开信息（昵称、头像）。
+      </text>
+      <text class="section-text">
+        2. 您可以选择不登录使用本小程序的基础功能，但部分功能（如课表分享、云端同步等）需要登录后才能使用。
+      </text>
+      <text class="section-text">
+        3. 您应妥善保管您的账号信息，因您保管不善导致的任何损失由您自行承担。
+      </text>
+    </view>
+
+    <view class="content-section">
+      <text class="section-title">四、用户行为规范</text>
+      <text class="section-text">
+        使用本小程序时，您应当遵守法律法规，不得从事以下行为：
+      </text>
+      <text class="section-text indent">
+        • 发布、传播违法违规内容
+      </text>
+      <text class="section-text indent">
+        • 侵犯他人知识产权或其他合法权益
+      </text>
+      <text class="section-text indent">
+        • 干扰、破坏本小程序的正常运行
+      </text>
+      <text class="section-text indent">
+        • 利用本小程序从事任何违法活动
+      </text>
+    </view>
+
+    <view class="content-section">
+      <text class="section-title">五、数据存储</text>
+      <text class="section-text">
+        1. 您的课表数据主要存储在本地设备中，我们不会主动上传您的课表内容到服务器。
+      </text>
+      <text class="section-text">
+        2. 如您使用课表分享功能，相关数据将临时存储在云端，用于实现分享功能。
+      </text>
+      <text class="section-text">
+        3. 您应自行负责备份重要数据，因设备故障、卸载小程序等原因导致的数据丢失，我们不承担责任。
+      </text>
+    </view>
+
+    <view class="content-section">
+      <text class="section-title">六、知识产权</text>
+      <text class="section-text">
+        1. 本小程序的所有内容（包括但不限于代码、界面设计、图标、文字等）的知识产权归开发者所有。
+      </text>
+      <text class="section-text">
+        2. 本小程序采用开源协议，源代码可在GitHub/Gitee上获取，具体使用请遵守相应的开源协议。
+      </text>
+    </view>
+
+    <view class="content-section">
+      <text class="section-title">七、免责声明</text>
+      <text class="section-text">
+        1. 本小程序按"现状"提供，我们不保证服务不会中断，对服务的及时性、安全性、准确性不作担保。
+      </text>
+      <text class="section-text">
+        2. 因不可抗力、系统维护、网络故障等原因导致服务中断或数据丢失的，我们不承担责任。
+      </text>
+      <text class="section-text">
+        3. 您使用本小程序产生的任何直接、间接、偶然、特殊及后续的损害，我们不承担责任。
+      </text>
+    </view>
+
+    <view class="content-section">
+      <text class="section-title">八、协议修改</text>
+      <text class="section-text">
+        我们有权根据需要修改本协议。修改后的协议将在本小程序内公布，您继续使用本小程序即视为接受修改后的协议。
+      </text>
+    </view>
+
+    <view class="content-section">
+      <text class="section-title">九、联系方式</text>
+      <text class="section-text">
+        如您对本协议有任何疑问，请通过以下方式联系我们：
+      </text>
+      <text class="section-text">
+        • QQ：1695080607
+      </text>
+      <text class="section-text">
+        • 邮箱：yu1695080607@foxmail.com
+      </text>
+    </view>
+
+    <view class="content-section">
+      <text class="section-title">十、其他</text>
+      <text class="section-text">
+        1. 本协议的订立、执行和解释及争议的解决均适用中华人民共和国法律。
+      </text>
+      <text class="section-text">
+        2. 如本协议中的任何条款无论因何种原因完全或部分无效，其余条款仍有效。
+      </text>
+    </view>
+
+    <view class="version-info">
+      <text class="version-text">版本：1.0.0</text>
+      <text class="version-text">更新日期：2026年2月13日</text>
+    </view>
+  </view>
+</view>

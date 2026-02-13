@@ -1,4 +1,4 @@
-// courseInput.js - 云同步版本
+// courseInput.js - 优化版本
 const { timetableApi, localApi } = require('../../utils/cloudApi.js');
 
 Page({
@@ -31,9 +31,6 @@ Page({
     oddEven: 0,
     weekOptions: [],
     selectedWeeksText: '请选择上课周数',
-    useCustomTime: false,
-    customStartTime: '08:00',
-    customEndTime: '08:50',
     isSaving: false
   },
 
@@ -190,7 +187,6 @@ Page({
   // 颜色选择器
   showColorPicker() { this.setData({ showColorPicker: true }); },
   hideColorPicker() { this.setData({ showColorPicker: false }); },
-  preventHide() {},
   selectColor(e) {
     this.setData({ 'course.color': e.currentTarget.dataset.color, showColorPicker: false });
   },
@@ -254,12 +250,7 @@ Page({
     });
   },
 
-  // 自定义时间
-  toggleCustomTime(e) { this.setData({ useCustomTime: e.detail.value }); },
-  onCustomStartChange(e) { this.setData({ customStartTime: e.detail.value }); },
-  onCustomEndChange(e) { this.setData({ customEndTime: e.detail.value }); },
-
-  // 保存课程 - 云同步版本
+  // 保存课程
   async saveCourse() {
     if (this.data.isSaving) return;
 
@@ -338,7 +329,7 @@ Page({
     }
   },
 
-  // 删除课程 - 云同步版本
+  // 删除课程
   async deleteCourse() {
     wx.showModal({
       title: '确认删除',

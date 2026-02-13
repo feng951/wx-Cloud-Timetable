@@ -89,7 +89,7 @@
           <text class="arrow">›</text>
         </view>
       </view>
-      
+
       <!-- Gitee -->
       <view class="repo-item" bindtap="openGitee">
         <view class="repo-icon gitee-icon">
@@ -98,6 +98,43 @@
         <view class="repo-info">
           <text class="repo-name">Gitee</text>
           <text class="repo-desc">wx-cloud-timetable</text>
+        </view>
+        <view class="arrow-icon">
+          <text class="arrow">›</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 法律协议卡片 -->
+  <view class="legal-card">
+    <view class="card-header">
+      <view class="header-line"></view>
+      <text class="card-title">法律协议</text>
+    </view>
+    <view class="legal-list">
+      <!-- 用户协议 -->
+      <view class="legal-item" bindtap="openUserAgreement">
+        <view class="legal-icon agreement-icon">
+          <text class="iconfont">📋</text>
+        </view>
+        <view class="legal-info">
+          <text class="legal-name">用户协议</text>
+          <text class="legal-desc">使用本小程序的服务条款</text>
+        </view>
+        <view class="arrow-icon">
+          <text class="arrow">›</text>
+        </view>
+      </view>
+
+      <!-- 隐私政策 -->
+      <view class="legal-item" bindtap="openPrivacyPolicy">
+        <view class="legal-icon privacy-icon">
+          <text class="iconfont">🔒</text>
+        </view>
+        <view class="legal-info">
+          <text class="legal-name">隐私政策</text>
+          <text class="legal-desc">我们如何保护您的隐私</text>
         </view>
         <view class="arrow-icon">
           <text class="arrow">›</text>

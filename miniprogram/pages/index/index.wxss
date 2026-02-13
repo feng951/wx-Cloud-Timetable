@@ -1,7 +1,7 @@
 /**index.wxss**/
 
 page {
-  background-color: #F5F7FA;
+  background-color: #FFFFFF;
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -40,30 +40,57 @@ page {
 .login-title {
   font-size: 44rpx;
   font-weight: 600;
-  color: #1A1A1A;
+  color: #000000;
   margin-bottom: 16rpx;
 }
 
 .login-subtitle {
   font-size: 28rpx;
-  color: #999999;
+  color: #666666;
   margin-bottom: 80rpx;
 }
 
 .login-btn {
   width: 480rpx;
   height: 96rpx;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background-color: #000000;
   color: #FFFFFF;
   font-size: 32rpx;
   font-weight: 500;
   border: none;
-  border-radius: 48rpx;
-  box-shadow: 0 8rpx 24rpx rgba(102, 126, 234, 0.3);
+  border-radius: 8rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
 }
 
 .login-btn::after {
   border: none;
+}
+
+.modal-footer {
+  margin-top: 32rpx;
+  text-align: center;
+}
+
+.privacy-text {
+  font-size: 22rpx;
+  color: #999999;
+}
+
+.privacy-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 8rpx;
+  flex-wrap: wrap;
+}
+
+.privacy-link {
+  font-size: 22rpx;
+  color: #000000;
+  text-decoration: underline;
 }
 
 /* 主内容区 */
@@ -84,7 +111,7 @@ page {
   align-items: center;
   padding: 20rpx 30rpx;
   background-color: #FFFFFF;
-  border-bottom: 1rpx solid #F0F0F0;
+  border-bottom: 1rpx solid #E5E5E5;
   flex-shrink: 0;
 }
 
@@ -95,8 +122,8 @@ page {
 
 .timetable-name {
   font-size: 34rpx;
-  font-weight: 700;
-  color: #1A1A1A;
+  font-weight: 600;
+  color: #000000;
   margin-bottom: 8rpx;
 }
 
@@ -113,10 +140,10 @@ page {
 
 .week-info {
   font-size: 24rpx;
-  color: #667eea;
-  background-color: #EEF2FF;
+  color: #000000;
+  background-color: #F5F5F5;
   padding: 4rpx 12rpx;
-  border-radius: 8rpx;
+  border-radius: 4rpx;
   font-weight: 500;
 }
 
@@ -128,17 +155,17 @@ page {
 .action-btn {
   width: 64rpx;
   height: 64rpx;
-  background-color: #F5F7FA;
-  border-radius: 50%;
+  background-color: #F5F5F5;
+  border-radius: 4rpx;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 32rpx;
-  color: #667eea;
+  color: #000000;
 }
 
 .action-btn:active {
-  background-color: #E8ECF4;
+  background-color: #E5E5E5;
 }
 
 /* 周数指示器 */
@@ -148,7 +175,7 @@ page {
   justify-content: center;
   padding: 16rpx 30rpx;
   background-color: #FFFFFF;
-  border-bottom: 1rpx solid #F5F7FA;
+  border-bottom: 1rpx solid #F5F5F5;
   gap: 40rpx;
   flex-shrink: 0;
 }
@@ -156,18 +183,18 @@ page {
 .week-nav {
   width: 56rpx;
   height: 56rpx;
-  background-color: #F5F7FA;
-  border-radius: 50%;
+  background-color: #F5F5F5;
+  border-radius: 4rpx;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 36rpx;
-  color: #667eea;
+  color: #000000;
   font-weight: 600;
 }
 
 .week-nav:active {
-  background-color: #E8ECF4;
+  background-color: #E5E5E5;
 }
 
 .week-center {
@@ -180,19 +207,19 @@ page {
 .current-week-text {
   font-size: 32rpx;
   font-weight: 600;
-  color: #1A1A1A;
+  color: #000000;
   text-align: center;
 }
 
 .back-to-current {
   margin-top: 8rpx;
   padding: 6rpx 16rpx;
-  background-color: #667eea;
-  border-radius: 20rpx;
+  background-color: #000000;
+  border-radius: 4rpx;
 }
 
 .back-to-current:active {
-  background-color: #5a6fd6;
+  background-color: #333333;
 }
 
 .back-text {
@@ -220,8 +247,8 @@ page {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 0 16rpx 16rpx 0;
+  background-color: #000000;
+  border-radius: 0;
   margin-right: 8rpx;
   flex-shrink: 0;
 }
@@ -243,13 +270,13 @@ page {
   justify-content: center;
   padding: 8rpx 0;
   margin: 0 4rpx;
-  border-radius: 12rpx;
+  border-radius: 4rpx;
   min-width: 0;
   position: relative;
 }
 
 .day-cell.active {
-  background-color: #667eea;
+  background-color: #000000;
 }
 
 .day-cell.active .day-name,
@@ -266,8 +293,8 @@ page {
   transform: translateY(-50%);
   width: 4rpx;
   height: 60%;
-  background-color: #667eea;
-  border-radius: 2rpx;
+  background-color: #000000;
+  border-radius: 0;
 }
 
 .day-name {
@@ -279,7 +306,7 @@ page {
 .day-date {
   font-size: 28rpx;
   font-weight: 600;
-  color: #1A1A1A;
+  color: #000000;
 }
 
 .day-month {
@@ -314,7 +341,7 @@ page {
   display: flex;
   width: 100%;
   min-height: 120rpx;
-  border-bottom: 1rpx solid #F5F7FA;
+  border-bottom: 1rpx solid #F5F5F5;
 }
 
 .time-cell {
@@ -323,8 +350,8 @@ page {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #FAFBFC;
-  border-right: 1rpx solid #F0F0F0;
+  background-color: #FAFAFA;
+  border-right: 1rpx solid #E5E5E5;
   padding: 16rpx 0;
   flex-shrink: 0;
 }
@@ -332,7 +359,7 @@ page {
 .period-num {
   font-size: 32rpx;
   font-weight: 600;
-  color: #1A1A1A;
+  color: #000000;
   margin-bottom: 8rpx;
 }
 
@@ -344,7 +371,7 @@ page {
 
 .start-time, .end-time {
   font-size: 18rpx;
-  color: #999999;
+  color: #666666;
 }
 
 /* 课程格子 */
@@ -352,24 +379,24 @@ page {
   flex: 1;
   min-width: 0;
   padding: 6rpx;
-  border-right: 1rpx solid #F5F7FA;
+  border-right: 1rpx solid #F5F5F5;
   min-height: 120rpx;
   display: flex;
   align-items: stretch;
 }
 
 .course-slot.today {
-  background-color: #F8F9FF;
+  background-color: #FAFAFA;
 }
 
 .course-slot:active {
-  background-color: #F0F2F8;
+  background-color: #F0F0F0;
 }
 
 .course-card {
   width: 100%;
   height: 100%;
-  border-radius: 12rpx;
+  border-radius: 4rpx;
   padding: 12rpx 8rpx;
   display: flex;
   flex-direction: column;
@@ -411,17 +438,16 @@ page {
 }
 
 .dot {
-  width: 16rpx;
-  height: 16rpx;
-  border-radius: 50%;
-  background-color: #E0E0E0;
+  width: 8rpx;
+  height: 8rpx;
+  border-radius: 0;
+  background-color: #CCCCCC;
   transition: all 0.3s ease;
 }
 
 .dot.active {
-  width: 32rpx;
-  border-radius: 8rpx;
-  background-color: #667eea;
+  width: 24rpx;
+  background-color: #000000;
 }
 
 /* 空状态 */
@@ -444,13 +470,13 @@ page {
 
 .empty-text {
   font-size: 32rpx;
-  color: #666666;
+  color: #333333;
   margin-bottom: 12rpx;
 }
 
 .empty-subtext {
   font-size: 26rpx;
-  color: #999999;
+  color: #666666;
   margin-bottom: 40rpx;
 }
 
@@ -465,14 +491,18 @@ page {
   width: 280rpx;
   height: 80rpx;
   background-color: #FFFFFF;
-  color: #667eea;
+  color: #000000;
   font-size: 28rpx;
-  border: 2rpx solid #667eea;
-  border-radius: 40rpx;
+  border: 2rpx solid #000000;
+  border-radius: 4rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
 }
 
 .import-btn.primary {
-  background-color: #667eea;
+  background-color: #000000;
   color: #FFFFFF;
 }
 
@@ -520,7 +550,7 @@ page {
   bottom: 0;
   left: 0;
   right: 0;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background-color: #000000;
   padding: 24rpx 30rpx;
   padding-bottom: calc(24rpx + env(safe-area-inset-bottom));
   display: flex;
@@ -549,41 +579,29 @@ page {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
-  animation: fadeIn 0.3s ease;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
 }
 
 .login-modal {
-  width: 600rpx;
+  width: 520rpx;
   background-color: #FFFFFF;
-  border-radius: 24rpx;
-  padding: 48rpx 40rpx;
+  border-radius: 4rpx;
+  padding: 40rpx;
   position: relative;
-  animation: slideUp 0.3s ease;
-}
-
-@keyframes slideUp {
-  from { transform: translateY(50rpx); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
 }
 
 .modal-close {
   position: absolute;
-  top: 20rpx;
-  right: 24rpx;
-  font-size: 40rpx;
-  color: #999999;
-  width: 56rpx;
-  height: 56rpx;
+  top: 16rpx;
+  right: 16rpx;
+  font-size: 32rpx;
+  color: #666666;
+  width: 48rpx;
+  height: 48rpx;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -596,15 +614,10 @@ page {
   margin-bottom: 40rpx;
 }
 
-.modal-icon {
-  font-size: 80rpx;
-  margin-bottom: 20rpx;
-}
-
 .modal-title {
   font-size: 36rpx;
   font-weight: 600;
-  color: #1A1A1A;
+  color: #000000;
   margin-bottom: 12rpx;
 }
 
@@ -613,72 +626,41 @@ page {
   color: #666666;
 }
 
-.modal-features {
-  background-color: #F8F9FA;
-  border-radius: 16rpx;
-  padding: 32rpx;
-  margin-bottom: 40rpx;
-}
-
-.feature-item {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20rpx;
-}
-
-.feature-item:last-child {
-  margin-bottom: 0;
-}
-
-.feature-icon {
-  font-size: 36rpx;
-  margin-right: 20rpx;
-  width: 48rpx;
-  text-align: center;
-}
-
-.feature-text {
-  font-size: 28rpx;
-  color: #333333;
-}
-
 .modal-actions {
   display: flex;
   flex-direction: column;
   gap: 20rpx;
-  margin-bottom: 24rpx;
 }
 
 .login-btn.primary {
   width: 100%;
   height: 88rpx;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background-color: #000000;
   color: #FFFFFF;
   font-size: 30rpx;
   font-weight: 500;
   border: none;
-  border-radius: 44rpx;
+  border-radius: 4rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
 }
 
 .login-btn.secondary {
   width: 100%;
   height: 80rpx;
-  background-color: #F5F7FA;
+  background-color: #FFFFFF;
   color: #666666;
   font-size: 28rpx;
-  border: none;
-  border-radius: 40rpx;
+  border: 1rpx solid #CCCCCC;
+  border-radius: 4rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
 }
 
 .login-btn::after {
   border: none;
-}
-
-.modal-footer {
-  text-align: center;
-}
-
-.privacy-text {
-  font-size: 22rpx;
-  color: #999999;
 }

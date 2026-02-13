@@ -67,6 +67,20 @@ Page({
     this.openExternalLink(giteeUrl, 'Gitee');
   },
 
+  // 打开用户协议
+  openUserAgreement() {
+    wx.navigateTo({
+      url: '/pages/agreement/agreement'
+    });
+  },
+
+  // 打开隐私政策
+  openPrivacyPolicy() {
+    wx.navigateTo({
+      url: '/pages/privacy/privacy'
+    });
+  },
+
   // 打开外部链接通用方法
   openExternalLink(url, platformName) {
     wx.showModal({

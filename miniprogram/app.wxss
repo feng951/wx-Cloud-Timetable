@@ -5,7 +5,7 @@ page {
   width: 100%;
   height: 100%;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', PingFang SC, 'Helvetica Neue', Arial, sans-serif;
-  background-color: #F5F7FA;
+  background-color: #FFFFFF;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -109,35 +109,37 @@ input {
 /* 通用卡片样式 */
 .card {
   background-color: #FFFFFF;
-  border-radius: 20rpx;
-  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.05);
+  border-radius: 4rpx;
+  border: 1rpx solid #E5E5E5;
 }
 
 /* 通用按钮样式 */
 .btn-primary {
   width: 100%;
   height: 96rpx;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background-color: #000000;
   color: #FFFFFF;
   font-size: 32rpx;
   font-weight: 500;
-  border-radius: 48rpx;
+  border-radius: 4rpx;
   display: flex;
   align-items: center;
   justify-content: center;
+  line-height: 1;
 }
 
 .btn-secondary {
   width: 100%;
   height: 96rpx;
   background-color: #FFFFFF;
-  color: #667eea;
+  color: #000000;
   font-size: 32rpx;
-  border: 2rpx solid #667eea;
-  border-radius: 48rpx;
+  border: 2rpx solid #000000;
+  border-radius: 4rpx;
   display: flex;
   align-items: center;
   justify-content: center;
+  line-height: 1;
 }
 
 /* 响应式字体大小 */
@@ -172,14 +174,14 @@ input {
 
 /* 颜色变量 */
 :root {
-  --primary: #667eea;
-  --primary-dark: #764ba2;
-  --success: #43e97b;
-  --warning: #fee140;
-  --danger: #f5576c;
-  --text-primary: #1A1A1A;
+  --primary: #000000;
+  --primary-dark: #333333;
+  --success: #000000;
+  --warning: #666666;
+  --danger: #000000;
+  --text-primary: #000000;
   --text-secondary: #666666;
   --text-tertiary: #999999;
-  --bg-primary: #F5F7FA;
-  --bg-secondary: #FFFFFF;
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F5F5F5;
 }

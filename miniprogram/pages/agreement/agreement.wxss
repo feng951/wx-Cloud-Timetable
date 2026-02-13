@@ -1,0 +1,77 @@
+/**agreement.wxss - 用户协议页面 - 简洁黑白设计**/
+
+/* 页面容器 */
+.agreement-container {
+  min-height: 100vh;
+  background-color: #FFFFFF;
+}
+
+/* 页面头部 */
+.page-header {
+  padding: 60rpx 40rpx 40rpx;
+  background-color: #FFFFFF;
+  border-bottom: 1rpx solid #E5E5E5;
+  text-align: center;
+}
+
+.page-title {
+  display: block;
+  font-size: 44rpx;
+  font-weight: 600;
+  color: #1A1A1A;
+  margin-bottom: 8rpx;
+}
+
+.page-subtitle {
+  display: block;
+  font-size: 24rpx;
+  color: #999999;
+}
+
+/* 协议内容区域 */
+.agreement-content {
+  padding: 40rpx;
+}
+
+/* 内容区块 */
+.content-section {
+  margin-bottom: 48rpx;
+}
+
+.section-title {
+  display: block;
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #1A1A1A;
+  margin-bottom: 20rpx;
+  line-height: 1.4;
+}
+
+.section-text {
+  display: block;
+  font-size: 28rpx;
+  color: #333333;
+  line-height: 1.8;
+  margin-bottom: 16rpx;
+  text-align: justify;
+}
+
+.section-text.indent {
+  padding-left: 32rpx;
+  margin-bottom: 12rpx;
+}
+
+/* 版本信息 */
+.version-info {
+  margin-top: 60rpx;
+  padding-top: 40rpx;
+  border-top: 1rpx solid #E5E5E5;
+  text-align: center;
+}
+
+.version-text {
+  display: block;
+  font-size: 24rpx;
+  color: #999999;
+  margin-bottom: 8rpx;
+}

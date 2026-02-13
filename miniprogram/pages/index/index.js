@@ -1,4 +1,4 @@
-// index.js - 优化授权流程版本
+// index.js - 优化版本
 const { timetableApi, localApi, shareApi } = require('../../utils/cloudApi.js');
 
 const WEEK_DAYS = ['周一', '周二', '周三', '周四', '周五', '周六', '周日'];
@@ -9,8 +9,6 @@ const DEFAULT_TIME_SLOTS = [
   { start: '15:40', end: '16:30' }, { start: '16:40', end: '17:30' },
   { start: '18:30', end: '19:20' }, { start: '19:30', end: '20:20' }
 ];
-
-// 默认课表数据（未登录时使用）
 const DEFAULT_COURSES = [[], [], [], [], [], [], []];
 
 Page({
@@ -31,7 +29,7 @@ Page({
     isLoading: false,
     syncStatus: '',
     courseCount: 0,
-    showLoginModal: false  // 登录弹窗显示状态
+    showLoginModal: false
   },
 
   onLoad() {
@@ -40,7 +38,7 @@ Page({
   },
 
   onShow() {
-    // 无论是否登录都刷新数据
+    this.checkLoginStatus();
     this.refreshData();
   },
 
@@ -52,10 +50,7 @@ Page({
     }, 100);
   },
 
-  // 加载设置（兼容未登录状态）
   loadSettings() {
-    // 尝试从本地存储加载设置
-    const userInfo = wx.getStorageSync('userInfo');
     const timetables = localApi.getTimetables();
     const mainTimetable = timetables.find(t => t.isMain) || timetables[0];
 
@@ -81,9 +76,8 @@ Page({
 
   setDefaultStartDate() {
     const now = new Date();
-    const daysToMonday = (now.getDay() + 6) % 7;
     const mondayDate = new Date(now);
-    mondayDate.setDate(now.getDate() - daysToMonday);
+    mondayDate.setDate(now.getDate() - (now.getDay() + 6) % 7);
     this.setData({ firstWeekStartDate: mondayDate });
   },
 
@@ -103,18 +97,16 @@ Page({
     startDate.setHours(0, 0, 0, 0);
     const targetDate = new Date(date);
     targetDate.setHours(0, 0, 0, 0);
-    const diffDays = Math.floor((targetDate - startDate) / (1000 * 60 * 60 * 24));
+    const diffDays = Math.floor((targetDate - startDate) / 86400000);
     return Math.max(1, Math.min(20, Math.floor(diffDays / 7) + 1));
   },
 
   generateWeekData() {
-    if (!this.data.firstWeekStartDate) {
-      this.setDefaultStartDate();
-    }
+    if (!this.data.firstWeekStartDate) this.setDefaultStartDate();
 
     const weekData = [];
     const baseTime = this.data.firstWeekStartDate.getTime();
-    const oneDay = 24 * 60 * 60 * 1000;
+    const oneDay = 86400000;
 
     for (let week = 1; week <= 20; week++) {
       const weekItem = { week, days: [], courses: Array(7).fill(null).map(() => []) };
@@ -137,27 +129,18 @@ Page({
 
   checkLoginStatus() {
     const userInfo = wx.getStorageSync('userInfo');
-    if (userInfo?.nickName) {
-      this.setData({ isLoggedIn: true, userInfo });
-    } else {
-      this.setData({ isLoggedIn: false, userInfo: null });
-    }
+    this.setData({ isLoggedIn: !!userInfo?.nickName, userInfo: userInfo?.nickName ? userInfo : null });
   },
 
-  // 加载课表数据（兼容未登录状态）
   async loadTimetableData() {
     const userInfo = wx.getStorageSync('userInfo');
-    
     if (userInfo) {
-      // 已登录：从云端加载
       await this.loadMainTimetableFromCloud();
     } else {
-      // 未登录：从本地加载或使用默认空课表
       this.loadLocalTimetableOrDefault();
     }
   },
 
-  // 从云端加载主课表
   async loadMainTimetableFromCloud() {
     this.setData({ syncStatus: '加载中...' });
 
@@ -173,13 +156,13 @@ Page({
           mainTimetable = {
             id: cloudMainTimetable._id, _id: cloudMainTimetable._id,
             name: cloudMainTimetable.name, isMain: true,
-            courses: cloudMainTimetable.courses || [[], [], [], [], [], [], []]
+            courses: cloudMainTimetable.courses || DEFAULT_COURSES
           };
         }
 
         localApi.saveTimetables(cloudTimetables.map(t => ({
           id: t._id, _id: t._id, name: t.name, isMain: t.isMain,
-          courses: t.courses || [[], [], [], [], [], [], []]
+          courses: t.courses || DEFAULT_COURSES
         })));
       }
 
@@ -194,7 +177,7 @@ Page({
           mainTimetable = {
             id: createResult.result.data._id, _id: createResult.result.data._id,
             name: createResult.result.data.name, isMain: true,
-            courses: [[], [], [], [], [], [], []]
+            courses: DEFAULT_COURSES
           };
           localApi.saveTimetables([mainTimetable]);
         }
@@ -208,29 +191,15 @@ Page({
     }
   },
 
-  // 加载本地课表或使用默认空课表
   loadLocalTimetableOrDefault() {
     const localTimetables = localApi.getTimetables();
     const mainTimetable = localTimetables.find(t => t.isMain) || localTimetables[0];
-
-    if (mainTimetable) {
-      this.updateTimetableDisplay(mainTimetable);
-    } else {
-      // 使用默认空课表
-      this.updateTimetableDisplay({
-        name: '我的课表',
-        courses: DEFAULT_COURSES
-      });
-    }
+    this.updateTimetableDisplay(mainTimetable || { name: '我的课表', courses: DEFAULT_COURSES });
   },
 
-  // 更新课表显示
   updateTimetableDisplay(timetable) {
     const settings = timetable?._id ? localApi.getSettings(timetable._id) : null;
-    
-    if (settings?.timeSlots?.length > 0) {
-      this.setData({ timeSlots: settings.timeSlots });
-    }
+    if (settings?.timeSlots?.length > 0) this.setData({ timeSlots: settings.timeSlots });
 
     const courseCount = this.calculateCourseCount(timetable?.courses);
 
@@ -241,9 +210,7 @@ Page({
       for (let day = 0; day < 7; day++) {
         for (let time = 0; time < 10; time++) {
           const course = courses[day]?.[time];
-          if (course?.weeks?.includes(weekItem.week)) {
-            weekCourses[day][time] = course;
-          }
+          if (course?.weeks?.includes(weekItem.week)) weekCourses[day][time] = course;
         }
       }
       return { ...weekItem, courses: weekCourses };
@@ -282,43 +249,43 @@ Page({
     return count;
   },
 
-  // 显示登录弹窗
-  showLoginModal() {
-    this.setData({ showLoginModal: true });
-  },
+  showLoginModal() { this.setData({ showLoginModal: true }); },
+  closeLoginModal() { this.setData({ showLoginModal: false }); },
 
-  // 关闭登录弹窗
-  closeLoginModal() {
-    this.setData({ showLoginModal: false });
-  },
-
-  // 登录流程
   async login() {
     this.setData({ isLoading: true, syncStatus: '登录中...' });
     wx.showLoading({ title: '登录中...', mask: true });
 
     try {
-      const res = await wx.getUserProfile({ desc: '用于完善用户资料' });
-      const userInfo = res.userInfo;
-      if (!userInfo?.nickName) throw new Error('获取用户信息失败');
+      const loginRes = await wx.login();
+      if (!loginRes.code) throw new Error('获取登录凭证失败');
+
+      const result = await wx.cloud.callFunction({
+        name: 'login',
+        data: { code: loginRes.code }
+      });
+
+      const responseData = typeof result.result === 'string' ? JSON.parse(result.result) : result.result;
+      if (!responseData?.success) throw new Error(responseData?.message || '登录失败');
+
+      const userInfo = responseData.data?.userInfo || {
+        _id: 'temp_' + Date.now(), openid: 'temp_openid', nickName: '微信用户', avatarUrl: ''
+      };
+      const token = responseData.data?.token || 'temp_token_' + Date.now();
 
       wx.setStorageSync('userInfo', userInfo);
+      wx.setStorageSync('token', token);
       this.setData({ syncStatus: '同步数据中...' });
-      await this.syncFromCloud(userInfo);
 
-      this.setData({ 
-        isLoggedIn: true, 
-        userInfo, 
-        isLoading: false, 
-        syncStatus: '同步完成',
-        showLoginModal: false
-      });
-      
+      try { await this.syncFromCloud(userInfo); } catch (e) { console.log('同步失败:', e); }
+
+      this.setData({ isLoggedIn: true, userInfo, isLoading: false, syncStatus: '同步完成', showLoginModal: false });
       this.refreshData();
       wx.hideLoading();
       wx.showToast({ title: '登录成功', icon: 'success' });
       setTimeout(() => this.setData({ syncStatus: '' }), 2000);
     } catch (err) {
+      console.error('登录失败:', err);
       wx.hideLoading();
       this.setData({ isLoading: false, syncStatus: '' });
       wx.showToast({ title: err.message || '登录失败', icon: 'none' });
@@ -329,61 +296,34 @@ Page({
     try {
       const result = await timetableApi.getTimetables();
       if (result.result?.success && result.result.data) {
-        const localTimetables = result.result.data.map(t => ({
-          id: t._id, _id: t._id, name: t.name, isMain: t.isMain,
-          courses: t.courses || [[], [], [], [], [], [], []]
-        }));
-        localApi.saveTimetables(localTimetables);
+        localApi.saveTimetables(result.result.data.map(t => ({
+          id: t._id, _id: t._id, name: t.name, isMain: t.isMain, courses: t.courses || DEFAULT_COURSES
+        })));
       }
     } catch (err) {
       console.error('同步云端数据失败:', err);
     }
   },
 
-  // 点击格子 - 未登录时提示登录
   onSlotTap(e) {
     const { day, time, week } = e.currentTarget.dataset;
-    
-    // 未登录时显示登录引导
-    if (!this.data.isLoggedIn) {
-      this.showLoginModal();
-      return;
-    }
-    
+    if (!this.data.isLoggedIn) { this.showLoginModal(); return; }
     const hasCourse = this.data.weekData[week - 1]?.courses[day][time];
-    wx.navigateTo({
-      url: `/pages/courseInput/courseInput?day=${day}&time=${time}&edit=${hasCourse ? 'true' : 'false'}&week=${week}`
-    });
+    wx.navigateTo({ url: `/pages/courseInput/courseInput?day=${day}&time=${time}&edit=${hasCourse ? 'true' : 'false'}&week=${week}` });
   },
 
-  // 添加课程 - 未登录时提示登录
   addCourse() {
-    if (!this.data.isLoggedIn) {
-      this.showLoginModal();
-      return;
-    }
+    if (!this.data.isLoggedIn) { this.showLoginModal(); return; }
     wx.navigateTo({ url: `/pages/courseInput/courseInput?week=${this.data.displayWeek}` });
   },
 
-  // 管理课表 - 未登录时提示登录
   manageTimetables() {
-    if (!this.data.isLoggedIn) {
-      this.showLoginModal();
-      return;
-    }
+    if (!this.data.isLoggedIn) { this.showLoginModal(); return; }
     wx.navigateTo({ url: '/pages/timetableList/timetableList' });
   },
 
-  importFromSchool() {
-    wx.showToast({ title: '导入功能开发中', icon: 'none' });
-  },
-
-  // 导入课表 - 未登录时提示登录
   showImportDialog() {
-    if (!this.data.isLoggedIn) {
-      this.showLoginModal();
-      return;
-    }
+    if (!this.data.isLoggedIn) { this.showLoginModal(); return; }
 
     wx.showModal({
       title: '导入课表',
@@ -392,10 +332,7 @@ Page({
       success: async (res) => {
         if (res.confirm && res.content) {
           const shareCode = res.content.toUpperCase().replace(/[^A-Z0-9]/g, '');
-          if (shareCode.length !== 10) {
-            wx.showToast({ title: '请输入10位分享码', icon: 'none' });
-            return;
-          }
+          if (shareCode.length !== 10) { wx.showToast({ title: '请输入10位分享码', icon: 'none' }); return; }
 
           this.setData({ isLoading: true, syncStatus: '导入中...' });
 
@@ -406,11 +343,7 @@ Page({
               wx.showToast({ title: '导入成功', icon: 'success' });
             } else {
               this.setData({ isLoading: false, syncStatus: '' });
-              wx.showModal({
-                title: '导入失败',
-                content: result.result?.message || '分享码无效或已过期',
-                showCancel: false
-              });
+              wx.showModal({ title: '导入失败', content: result.result?.message || '分享码无效或已过期', showCancel: false });
             }
           } catch (err) {
             console.error('导入课表失败:', err);
@@ -422,27 +355,12 @@ Page({
     });
   },
 
-  onWeekChange(e) {
-    this.setData({ displayWeek: e.detail.current + 1 });
-  },
+  onWeekChange(e) { this.setData({ displayWeek: e.detail.current + 1 }); },
+  prevWeek() { if (this.data.displayWeek > 1) this.setData({ displayWeek: this.data.displayWeek - 1 }); },
+  nextWeek() { if (this.data.displayWeek < 20) this.setData({ displayWeek: this.data.displayWeek + 1 }); },
+  backToCurrentWeek() { this.setData({ displayWeek: this.data.currentWeek }); },
+  goToWeek(e) { this.setData({ displayWeek: e.currentTarget.dataset.week }); },
 
-  prevWeek() {
-    if (this.data.displayWeek > 1) {
-      this.setData({ displayWeek: this.data.displayWeek - 1 });
-    }
-  },
-
-  nextWeek() {
-    if (this.data.displayWeek < 20) {
-      this.setData({ displayWeek: this.data.displayWeek + 1 });
-    }
-  },
-
-  backToCurrentWeek() {
-    this.setData({ displayWeek: this.data.currentWeek });
-  },
-
-  goToWeek(e) {
-    this.setData({ displayWeek: e.currentTarget.dataset.week });
-  }
+  openUserAgreement() { wx.navigateTo({ url: '/pages/agreement/agreement' }); },
+  openPrivacyPolicy() { wx.navigateTo({ url: '/pages/privacy/privacy' }); }
 });
