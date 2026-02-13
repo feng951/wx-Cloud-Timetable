@@ -186,7 +186,7 @@ Page({
   // 管理课表
   manageTimetables() {
     if (!this.data.isLoggedIn) {
-      wx.showToast({ title: '请先登录', icon: 'none' });
+      this.showLoginModal();
       return;
     }
     wx.navigateTo({ url: '/pages/timetableList/timetableList' });

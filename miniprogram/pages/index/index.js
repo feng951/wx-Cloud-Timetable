@@ -307,18 +307,15 @@ Page({
 
   onSlotTap(e) {
     const { day, time, week } = e.currentTarget.dataset;
-    if (!this.data.isLoggedIn) { this.showLoginModal(); return; }
     const hasCourse = this.data.weekData[week - 1]?.courses[day][time];
     wx.navigateTo({ url: `/pages/courseInput/courseInput?day=${day}&time=${time}&edit=${hasCourse ? 'true' : 'false'}&week=${week}` });
   },
 
   addCourse() {
-    if (!this.data.isLoggedIn) { this.showLoginModal(); return; }
     wx.navigateTo({ url: `/pages/courseInput/courseInput?week=${this.data.displayWeek}` });
   },
 
   manageTimetables() {
-    if (!this.data.isLoggedIn) { this.showLoginModal(); return; }
     wx.navigateTo({ url: '/pages/timetableList/timetableList' });
   },
 
