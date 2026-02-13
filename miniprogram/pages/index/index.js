@@ -359,5 +359,23 @@ Page({
   goToWeek(e) { this.setData({ displayWeek: e.currentTarget.dataset.week }); },
 
   openUserAgreement() { wx.navigateTo({ url: '/pages/agreement/agreement' }); },
-  openPrivacyPolicy() { wx.navigateTo({ url: '/pages/privacy/privacy' }); }
+  openPrivacyPolicy() { wx.navigateTo({ url: '/pages/privacy/privacy' }); },
+
+  // 分享给好友
+  onShareAppMessage() {
+    return {
+      title: `风表 - ${this.data.mainTimetableName || '我的课表'}`,
+      path: '/pages/index/index',
+      imageUrl: '/images/share-cover.png'
+    };
+  },
+
+  // 分享到朋友圈
+  onShareTimeline() {
+    return {
+      title: `风表 - ${this.data.mainTimetableName || '我的课表'}`,
+      query: '',
+      imageUrl: '/images/share-cover.png'
+    };
+  }
 });
