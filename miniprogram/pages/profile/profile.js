@@ -9,7 +9,8 @@ Page({
     timetableCount: 0,
     courseCount: 0,
     isLoading: false,
-    showLoginModal: false
+    showLoginModal: false,
+    hasAgreed: false
   },
 
   onLoad() {
@@ -222,9 +223,14 @@ Page({
   },
 
   // 显示/关闭登录弹窗
-  showLoginModal() { this.setData({ showLoginModal: true }); },
-  closeLoginModal() { this.setData({ showLoginModal: false }); },
+  showLoginModal() { this.setData({ showLoginModal: true, hasAgreed: false }); },
+  closeLoginModal() { this.setData({ showLoginModal: false, hasAgreed: false }); },
   preventClose() {},
+
+  // 切换协议同意状态
+  toggleAgreement() {
+    this.setData({ hasAgreed: !this.data.hasAgreed });
+  },
 
   // 打开协议页面
   openUserAgreement() { wx.navigateTo({ url: '/pages/agreement/agreement' }); },
