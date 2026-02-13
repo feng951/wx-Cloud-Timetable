@@ -254,6 +254,24 @@ Page({
   async saveCourse() {
     if (this.data.isSaving) return;
 
+    // 检查登录状态
+    const userInfo = wx.getStorageSync('userInfo');
+    if (!userInfo?.nickName) {
+      wx.showModal({
+        title: '提示',
+        content: '您未登录，请登录后重试',
+        confirmText: '去登录',
+        cancelText: '取消',
+        success: (res) => {
+          if (res.confirm) {
+            // 跳转到我的页面进行登录
+            wx.switchTab({ url: '/pages/profile/profile' });
+          }
+        }
+      });
+      return;
+    }
+
     if (!this.data.course.name) {
       wx.showToast({ title: '请输入课程名称', icon: 'none' });
       return;
@@ -317,7 +335,7 @@ Page({
       this.setData({ isSaving: false });
 
       wx.showToast({
-        title: '保存成功',
+        title: '录入成功',
         icon: 'success',
         success: () => setTimeout(() => wx.navigateBack(), 1000)
       });

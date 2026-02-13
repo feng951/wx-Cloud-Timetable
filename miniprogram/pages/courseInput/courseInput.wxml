@@ -94,6 +94,13 @@
     <view class="bottom-space"></view>
   </scroll-view>
 
+  <!-- 底部提交按钮 -->
+  <view class="footer-bar">
+    <button class="submit-btn {{isSaving ? 'saving' : ''}}" bindtap="saveCourse" disabled="{{isSaving}}">
+      {{isSaving ? '保存中...' : '保存课程'}}
+    </button>
+  </view>
+
   <!-- 颜色选择器弹窗 -->
   <view wx:if="{{showColorPicker}}" class="color-picker-mask" bindtap="hideColorPicker">
     <view class="color-picker" catchtap="preventHide">
